@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/ReadSpike.css?3984793274" type="text/css">		  
   
   <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-  <meta name="author" content="name">
+  <meta name="author" content="blackspike.com">
   <meta name="description" content="Simple php/json/html5/css3 news aggregator by blackspike.com">  
   
 <script type="text/javascript">
@@ -111,7 +111,7 @@
     
         $cache_file = 'cache/api-cache-HN.json';
         $api_call = 'http://api.ihackernews.com/page';
-        $cache_for = 10; // cache results for five minutes
+        $cache_for = 20; // cache results for twenty minutes
         
         $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
         if (!$res = $api_cache->get_api_cache())
