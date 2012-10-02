@@ -107,8 +107,8 @@
     <?php //!HACKER NEWS
     
         $cache_file = 'cache/api-cache-HN.json';
-        $api_call = 'http://open.dapper.net/transform.php?dappName=hackernewsdavid&transformer=JSON&applyToUrl=http%3A%2F%2Fnews.ycombinator.com%2F';
-        $cache_for = 20; // cache results for twenty minutes
+        $api_call = 'http://open.dapper.net/transform.php?dappName=HNhomepage&transformer=JSON&applyToUrl=http%3A%2F%2Fnews.ycombinator.com%2F';
+        $cache_for = 10; // cache results for ten minutes
         
         $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
         if (!$res = $api_cache->get_api_cache())
