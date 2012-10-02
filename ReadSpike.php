@@ -288,6 +288,8 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <script src="js/ReadSpike.js" type="text/javascript"></script>
 
+<!--
+
 <script type="text/javascript">
   var uvOptions = {};
   (function() {
@@ -295,7 +297,9 @@
     uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/41GKPc60EN3P7KhrnyTmTg.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
-</script>
+</script
+
+-->
 
  </body>
 </html>
