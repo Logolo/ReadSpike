@@ -3,7 +3,8 @@
 * Caches API calls to a local file which is updated on a 
 * given time interval.
 */
-header("Cache-Control: max-age=1");
+  
+  // header("Cache-Control: max-age=1");
   require 'API_cache.php';
   
 ?>
