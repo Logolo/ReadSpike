@@ -4,7 +4,11 @@
 * given time interval.
 */
   
+<<<<<<< HEAD
   // header("Cache-Control: max-age=1");
+=======
+  header("Cache-Control: max-age=1");
+>>>>>>> added rudimentary image previews
   require 'API_cache.php';
   
 ?>
@@ -74,17 +78,39 @@
       echo "<ol>\n";
       
           foreach($decodeReddit[data][children] as $story){
-            
-          if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}          
+           
+          //nsfw!  
+          if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}  
           
+          // comments                
           echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
           
-          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" title=\"".$story[data][num_comments]." | ".$story[data][subreddit]."\" >".$story[data][title]."</a>\n"; 
-          echo "</li>\n";          
+          // thumbnail
+          if($story[data][thumbnail]){echo "<img src=".$story[data][thumbnail]." class='thumbnail' />";}   
           
-         /* echo $story[data][subreddit]." | ".$story[data][num_comments]." | "."<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\">Comments</a>";*/          
-         /* echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"thumbnail\">&#10095;</a>\n"; */
-         /*"."<img src=\"".$story[data][thumbnail]."\"</img>"."*/
+<<<<<<< HEAD
+          echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
+=======
+>>>>>>> added rudimentary image previews
+          
+          // detect if image
+          $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
+          $url = $story[data][url];
+          $urlExt = pathinfo($url, PATHINFO_EXTENSION);
+          
+          if (in_array($urlExt, $imgExts)) { 
+            
+            echo "<a title='Hide image' class='hide-image'>&#x25B4;</a>";
+            echo "<a title='Show image' href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
+                        
+            echo "<div class='full-image'></div>";
+              
+          }
+          
+          // title
+          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." | ".$story[data][subreddit]."\" >".$story[data][title]."</a>\n"; 
+          echo "</li>\n";
+          
           
         }
       /* !WRITE OUT ALL JSON
@@ -94,6 +120,8 @@
         echo "</pre>";
       */
 
+        
+        
         echo "</ol>\n\n";        
     ?>
 

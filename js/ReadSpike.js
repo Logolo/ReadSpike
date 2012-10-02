@@ -11,8 +11,48 @@ $(function () {
 	    },
 	});
 	
+	// show reddit image
+	/*
+  	
+	$(".show-image").click(function () {
+    var url = $(this).attr('href'),
+    image = new Image();
+    image.src = url;
+    image.onload = function () {
+        $(".full-image").empty().append(image).hide().slideDown();
+    };
+    image.onerror = function () {
+        $('.full-image').empty().html('That image is not available.');
+    }
+
+    $('.full-image').empty().html('Loading...');
+
+    return false;
+});
 	
+
 	
+	*/
+  
+    $(".show-image").click(function(){
+        var imgUrl = $(this).attr('href');
+        $(this).next(".full-image").hide().html("<a href='" + imgUrl + "' title='View full size' target='_blank'><img src='" + imgUrl + "' alt='' /></a>").fadeIn();
+        
+        $(this).hide();
+        $(this).prev(".hide-image").show();
+        return false;
+    });
+  
+  
+    $(".hide-image").click(function(){
+        
+        $(this).hide();
+        $(this).next(".show-image").show().next(".full-image").hide();
+        return false;
+    });
+    
+    	
+	  
 	// set light
 	
 	
