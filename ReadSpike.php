@@ -3,7 +3,7 @@
 * Caches API calls to a local file which is updated on a 
 * given time interval.
 */
-
+header("Cache-Control: max-age=1");
   require 'API_cache.php';
   
 ?>
@@ -76,7 +76,7 @@
             
           if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}          
           
-          echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\">&#10078;</a>";
+          echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
           
           echo "<a href=\"".$story[data][url]."\" target=\"_blank\" title=\"".$story[data][num_comments]." | ".$story[data][subreddit]."\" >".$story[data][title]."</a>\n"; 
           echo "</li>\n";          
@@ -86,10 +86,6 @@
          /*"."<img src=\"".$story[data][thumbnail]."\"</img>"."*/
           
         }
-        echo "<pre>";
-        print_r($decode);
-        echo "</pre>";
-      
       /* !WRITE OUT ALL JSON
       
         echo "<pre>";
@@ -110,7 +106,7 @@
     <?php //!HACKER NEWS
     
         $cache_file = 'cache/api-cache-HN.json';
-        $api_call = 'http://api.ihackernews.com/page';
+        $api_call = 'http://open.dapper.net/transform.php?dappName=hackernewsdavid&transformer=JSON&applyToUrl=http%3A%2F%2Fnews.ycombinator.com%2F';
         $cache_for = 20; // cache results for twenty minutes
         
         $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
@@ -121,13 +117,13 @@
 
       echo "<ol>\n";
       
-      foreach($decodeHN[items]as $storyHN){
+      foreach($decodeHN[groups][Post]as $storyHN){
       
         
         echo "<li>";   
         /*echo $storyHN[postedAgo]." | ".$storyHN[commentCount]." | "."<a href=\"http://news.ycombinator.com/item?id=".$storyHN[id]."\" target=\"_blank\" class=\"comments\">&#149;</a>";*/
-        echo "<a href=\"http://news.ycombinator.com/item?id=".$storyHN[id]."\" target=\"_blank\" class=\"comments\">&#10078;</a>";
-        echo "<a href=\"".$storyHN[url]."\" target=\"_blank\">".$storyHN[title]."</a>"; 
+        echo "<a href=\"".$storyHN[NumComments][0][href]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
+        echo "<a href=\"".$storyHN[Title][0][href]."\" target=\"_blank\">".$storyHN[Title][0][value]."</a>"; 
         echo "</li>\n";
       }
   
@@ -140,7 +136,6 @@
       echo "</pre>";
       
       */
-        
   
   ?>
   
@@ -292,6 +287,14 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <script src="js/ReadSpike.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+  var uvOptions = {};
+  (function() {
+    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/41GKPc60EN3P7KhrnyTmTg.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script>
 
  </body>
 </html>
