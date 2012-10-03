@@ -56,16 +56,24 @@ $(function () {
 	  
 	 // bbc/google news tabs
 	  
-		$('.tab-content.bbc-news').show();
 		$('.tab-header.bbc-title').addClass('active').addClass("news-title-prefix");
+		
 		$('.tab-header').click(function(){
+		
   		var tabID = $(this).attr('data-source'); // Get the value of clicked a's href attribute
+  		
   		var tabID = "."+tabID;
+  		
   		$('.tab-content').hide(); // Hide all tab
+  		
   		$(tabID).fadeIn(); // Show aimed tab
+  		
   		$('.tab-header').removeClass('active news-title-prefix'); // Remove 'active' class from all nav item
+  		
   		$(this).addClass('active').addClass("news-title-prefix");; // Add 'active' class to clicked nav item
+  		
   		return false; // Kill the link, don't do default action which is 'jump' to destined ID
+  		
 		})
 	 
 	// set light

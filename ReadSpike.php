@@ -16,13 +16,13 @@
 
   <meta charset="UTF-8">
 
-  <title>ReadSpike Simple news Aggregator</title>
+  <title>ReadSpike Simple news aggregator</title>
 
   <link rel="stylesheet" href="css/ReadSpike.css" type="text/css">
 
   <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-  <meta name="author" content="blackspike.com">
-  <meta name="description" content="Simple news aggregator by blackspike.com">
+  <meta name="author" content="http://blackspike.com">
+  <meta name="description" content="Simple techy-news aggregator">
 
   <script type="text/javascript">
 
@@ -107,8 +107,8 @@
 
           if (in_array($urlExt, $imgExts)) {
 
-            echo "<a title='Hide image' class='hide-image'>&times;</a>";
-            echo "<a title='Show image' href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
+            echo "<a class='hide-image'>&times;</a>";
+            echo "<a href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
 
           }
 
@@ -400,6 +400,14 @@
     var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
     uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/41GKPc60EN3P7KhrnyTmTg.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+  })();
+</script
+
+-->
+
+ </body>
+</html>
+);
   })();
 </script
 
