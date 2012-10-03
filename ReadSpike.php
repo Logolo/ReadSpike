@@ -93,8 +93,7 @@
 
 
           // title
-          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." | ".$story[data][subreddit]."\" >".$story[data][title]."</a>\n";
-
+          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." ".$story[data][subreddit]." ".$story[data][selftext]."\" >".$story[data][title]."</a>\n";
 
 
           // comments
@@ -111,11 +110,10 @@
             echo "<a title='Hide image' class='hide-image'>&times;</a>";
             echo "<a title='Show image' href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
 
-
           }
 
           // thumbnail
-          if($story[data][thumbnail]){echo "<div class='tooltip-holder'><img src=".$story[data][thumbnail]." class='thumbnail' /></div>";}
+          if($story[data][thumbnail]){echo "<div class='tooltip-holder' style='background: url(".$story[data][thumbnail].") no-repeat center bottom;' class='thumbnail' /></div>";}
 
 
           // detect if show image layer
@@ -135,7 +133,7 @@
       /* !WRITE OUT ALL JSON
 
         echo "<pre>";
-        print_r($decode);
+        print_r($decodeReddit);
         echo "</pre>";
       */
 
@@ -409,10 +407,7 @@
 
  </body>
 </html>
-#8679;</a>
- 
-    <div class="settings"> 
-     <a class="darkSwitch">dark</a>
+rk</a>
      <a class="lightSwitch">light</a>
     </div>
     

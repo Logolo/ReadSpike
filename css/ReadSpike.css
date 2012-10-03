@@ -32,10 +32,12 @@ a:active {background: #222; color: #fff;}
 .full-image a {padding: 0; padding: 5px; }
 .full-image img {width: 100%; display: block;}
 
-.tooltip-holder  {position: absolute; right: -5px; width: 0; text-align: center; height: 0px; top: -100px; z-index: 10; opacity: 0;-webkit-transition: all 0.3s ease;  -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
-.tooltip-holder img {box-shadow: 6px 6px 20px 0px rgba(0,0,0,0.6)}
+/* ! thumbnail */
 
-.show-image:hover ~ .tooltip-holder {opacity: 1; width: 100px; height: 80px; }
+.tooltip-holder  {position: absolute; right: 15px; width: 0; text-align: center; height: 0px; top: -100px; z-index: 10; opacity: 0;-webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
+.tooltip-holder {box-shadow: 0 5px 12px -7px rgba(0,0,0,0.9);}
+
+.show-image:hover ~ .tooltip-holder {opacity: 1; width: 70px; height: 80px; }
 
 .story-title {padding-right: 60px;}
 .story-title.open-story, .story-title.open-story:visited {font-weight: bold; color: #666}
@@ -158,5 +160,5 @@ and (max-device-width : 1024px) {
 
   /* Styles */
   
-  li a {padding: 10px 0 10px 5px; }
+  li a {padding: 10px 25px 10px 5px; }
 }
