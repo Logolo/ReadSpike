@@ -1,19 +1,19 @@
-body {margin: 0; padding: 0; font-family: 'Helvetica Neue', 'Segoe UI', Segoe, sans-serif; background: #333; color: #bbb; font-size: 15px; line-height: 140%; -webkit-transition: all 0.5s ease; transition: all 0.5s ease;}
+body {margin: 0; padding: 0; font-family: 'Helvetica Neue', 'Segoe UI', Segoe, sans-serif; background: #333; color: #bbb; font-size: 15px; line-height: 140%; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; }
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 ul,
 ol {margin: 0 0 3em 0; padding: 0; list-style: none;}
 
-li {border-bottom: 1px dotted #666; position: relative; overflow: hidden}
+li {border-bottom: 1px dotted #666; position: relative;}
 
 h1.logo-header {font-size: 0; color: transparent; position: absolute; top: 25px; left: 40px; background: url('../imgs/readspike-logo.svg') no-repeat left center; width: 181px; height: 42px; }
 
 
-h1 a {display: inline-block; text-decoration: none; color: #bbb; font-weight: 200; font-size: 28px; padding-left: 5px; }
+h1 a {display: inline-block; text-decoration: none; color: #bbb; font-weight: 200; font-size: 24px; padding: 0 5px 0 5px; }
 h1 a:visited {color: #bbb }
 h1 a:hover {color: #fff; background: none; text-shadow: 0 0 5px #000; }
 
-a {text-decoration: none; display: block; color: #bbb; padding: 5px 20px 5px 5px; -webkit-transition: all 0.1s ease; transition: all 0.1s ease;}
+a {text-decoration: none; display: block; color: #bbb; padding: 5px 25px 5px 5px; -webkit-transition: all 0.1s ease; transition: all 0.1s ease;}
 a:visited {color: #666 }
 a:hover {background: #292929; color: #fff;}
 a:active {background: #222; color: #fff;}
@@ -28,11 +28,14 @@ a:active {background: #222; color: #fff;}
 
 .hide-image {display: none; right: 30px;}
 
-.full-image {display: none; clear: both; text-align: center; float: right;}
-.full-image a {padding: 0; padding: 5px}
+.full-image {display: none; clear: both; text-align: center; z-index: 500; position: inherit}
+.full-image a {padding: 0; padding: 5px; }
 .full-image img {width: 100%; display: block;}
 
-.thumbnail {display: none; position: absolute; left: -100px; border: 10px solid #000;; z-index: 10; ;}
+.tooltip-holder  {position: absolute; right: -5px; width: 0; text-align: center; height: 0px; top: -100px; z-index: 10; opacity: 0;-webkit-transition: all 0.3s ease;  -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
+.tooltip-holder img {box-shadow: 6px 6px 20px 0px rgba(0,0,0,0.6)}
+
+.show-image:hover ~ .tooltip-holder {opacity: 1; width: 100px; height: 80px; }
 
 .story-title {padding-right: 60px;}
 .story-title.open-story, .story-title.open-story:visited {font-weight: bold; color: #666}
@@ -40,12 +43,16 @@ a:active {background: #222; color: #fff;}
 .nsfw .story-title:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
 .nsfw .story-title:visited:before {color: #a6a6a6;}
 
-.tab-header.bbc-title ,
+/* !news tabs */
+
+.tab-header.bbc-title,
 .tab-header.bbc-title:visited,
 .tab-header.GNews-title,
-.tab-header.GNews-title:visited {color: #BEBEBE}
-.tab-header.bbc-title.active, .tab-header.GNews-title.active {color: #666} 
-.tab-header.bbc-title {float: left}
+.tab-header.GNews-title:visited {color: #666}
+
+.tab-header.bbc-title.active, .tab-header.GNews-title.active {color: #bbb} 
+
+.tab-header.bbc-title {float: left; margin-right: 20px}
 
 .tab-content.GNews-news {display: none}
 
@@ -71,6 +78,14 @@ body.light {background: #eee; color: #666;}
 
 .light .header-search {background: #e7e7e7; padding: 1em 0; border-bottom: 1px solid #ddd}
 
+/* !light news tabs */
+
+.light .tab-header.bbc-title,
+.light .tab-header.bbc-title:visited,
+.light .tab-header.GNews-title,
+.light .tab-header.GNews-title:visited {color: #BEBEBE}
+
+.light .tab-header.bbc-title.active, .light .tab-header.GNews-title.active {color: #666} 
 
 
 .settings {position: absolute; top: 34px; right: 20px; padding: 2px; width: 100px; height: 80px; opacity: 0.5;}
@@ -91,7 +106,7 @@ body.light {background: #eee; color: #666;}
 
 form {text-align: center }
 
-input[type="text"] {width: 40%; margin: 1em auto; height: 32px; border: 1px solid #C9C9C9; font-size: 16px; color: #606060; padding: 0 40px 0 10px; background: #ddd; }
+input[type="text"] {width: 40%; margin: 0.5em auto; height: 40px; border: 1px solid #C9C9C9; font-size: 16px; color: #606060; padding: 0 40px 0 10px; background: #ddd; }
 .light input[type="text"] {background: #fff} 
 input::-webkit-input-placeholder, input::input-placeholder {color: #bbb }
 
@@ -122,7 +137,8 @@ only screen and (max-width : 800px) {
   
   .col-group > .col {float: none; width: auto;}
   
-  
+  .tooltip-holder,
+  .show-image:hover ~ .tooltip-holder,
   .header-search {display: none}
   
   input[type="text"] {width: 80%}

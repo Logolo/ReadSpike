@@ -102,7 +102,7 @@
           }    
           
           // thumbnail
-          if($story[data][thumbnail]){echo "<img src=".$story[data][thumbnail]." class='thumbnail' />";}   
+          if($story[data][thumbnail]){echo "<div class='tooltip-holder'><img src=".$story[data][thumbnail]." class='thumbnail' /></div>";}   
           
           
           // detect if show image layer
