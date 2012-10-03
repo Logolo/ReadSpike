@@ -9,7 +9,7 @@ li {border-bottom: 1px dotted #666; position: relative;}
 h1.logo-header {font-size: 0; color: transparent; position: absolute; top: 25px; left: 40px; background: url('../imgs/readspike-logo.svg') no-repeat left center; width: 181px; height: 42px; }
 
 
-h1 a {display: inline-block; text-decoration: none; color: #bbb; font-weight: 200; font-size: 24px; padding: 0 5px 0 5px; }
+h1, h1 a {display: inline-block; text-decoration: none; color: #bbb; font-weight: 200; font-size: 24px; padding: 0 5px 0 5px; }
 h1 a:visited {color: #bbb }
 h1 a:hover {color: #fff; background: none; text-shadow: 0 0 5px #000; }
 
@@ -48,11 +48,13 @@ a:active {background: #222; color: #fff;}
 .tab-header.bbc-title,
 .tab-header.bbc-title:visited,
 .tab-header.GNews-title,
-.tab-header.GNews-title:visited {color: #666}
+.tab-header.GNews-title:visited {color: #666; padding-right: 0}
 
 .tab-header.bbc-title.active, .tab-header.GNews-title.active {color: #bbb} 
 
-.tab-header.bbc-title {float: left; margin-right: 20px}
+.tab-header.bbc-title {}
+
+.news-title-prefix:after {content: " News"}
 
 .tab-content.GNews-news {display: none}
 
@@ -67,7 +69,7 @@ body.light {background: #eee; color: #666;}
 
 .light li {border-bottom: 1px dotted #ccc;}
 
-.light h1 a {color: #666; }
+.light h1,.light h1 a {color: #666; }
 .light h1 a:visited { color: #666 }
 .light h1 a:hover { color: #333; text-shadow: none; background: transparent} 
 
@@ -131,7 +133,7 @@ only screen and (max-width : 800px) {
 
   /* Styles */
   
-  li a {padding: 10px 0 10px 5px; }
+  li a {padding: 10px 0 25px 5px; }
   
   .col-group {overflow: hidden; margin: 0;}
   
@@ -143,7 +145,7 @@ only screen and (max-width : 800px) {
   
   input[type="text"] {width: 80%}
   
-  .thumbnail, .comments {float: right; display: inline-block; width: 2em; height: 2em; line-height: 2em; text-align: center}
+  .comments {float: right; display: inline-block; width: 2em; height: 2em; line-height: 2em; text-align: center}
 
 }
 
