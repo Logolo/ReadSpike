@@ -36,10 +36,11 @@ $(function () {
   
     $(".show-image").click(function(){
         var imgUrl = $(this).attr('href');
-        $(this).next(".full-image").hide().html("<a href='" + imgUrl + "' title='View full size' target='_blank'><img src='" + imgUrl + "' alt='' /></a>").fadeIn();
+        $(this).siblings(".full-image").hide().html("<a href='" + imgUrl + "' title='View full size' target='_blank'><img src='" + imgUrl + "' alt='' /></a>").fadeIn();
         
         $(this).hide();
-        $(this).prev(".hide-image").show();
+        $(this).siblings(".hide-image").show();
+        $(this).siblings(".story-title").addClass("open-story");
         return false;
     });
   
@@ -47,10 +48,10 @@ $(function () {
     $(".hide-image").click(function(){
         
         $(this).hide();
-        $(this).next(".show-image").show().next(".full-image").hide();
+        $(this).siblings(".show-image").show().siblings(".full-image").slideUp('fast');
+        $(this).siblings(".story-title").removeClass("open-story");
         return false;
-    });
-    
+    });    	
     	
 	  
 	// set light

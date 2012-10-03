@@ -4,7 +4,7 @@ body {margin: 0; padding: 0; font-family: 'Helvetica Neue', 'Segoe UI', Segoe, s
 ul,
 ol {margin: 0 0 3em 0; padding: 0; list-style: none;}
 
-li {overflow: hidden; border-bottom: 1px dotted #666; position: relative;}
+li {border-bottom: 1px dotted #666; position: relative; overflow: hidden}
 
 h1.logo-header {font-size: 0; color: transparent; position: absolute; top: 25px; left: 40px; background: url('../imgs/readspike-logo.svg') no-repeat left center; width: 181px; height: 42px; }
 
@@ -18,24 +18,27 @@ a:visited {color: #666 }
 a:hover {background: #292929; color: #fff;}
 a:active {background: #222; color: #fff;}
 
-.story-title {}
-.image-controls {position: absolute; top; left; width: 60px; background: red; height: 30px}
-
 .comments,
 .show-image,
-.hide-image {float: right; display: inline-block; padding: 5px 10px; cursor: pointer}
+.hide-image {float: right; display: inline-block; padding: 5px 10px; cursor: pointer; position: absolute; top: 0; right: 0}
 
-.hide-image {display: none;}
+.comments {padding-top: 9px; padding-bottom: 1px;}
 
-.full-image {display: none; clear: both; text-align: center;}
-.full-image a {padding: 0; margin: 20px;  padding: 5px}
+.show-image {right: 30px;}
+
+.hide-image {display: none; right: 30px;}
+
+.full-image {display: none; clear: both; text-align: center; float: right;}
+.full-image a {padding: 0; padding: 5px}
 .full-image img {width: 100%; display: block;}
 
-.thumbnail {display: none; position: absolute}
+.thumbnail {display: none; position: absolute; left: -100px; border: 10px solid #000;; z-index: 10; ;}
 
+.story-title {padding-right: 60px;}
+.story-title.open-story, .story-title.open-story:visited {font-weight: bold; color: #666}
 
-.nsfw a:last-child:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
-.nsfw a:last-child:visited:before {color: #a6a6a6;}
+.nsfw .story-title:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
+.nsfw .story-title:visited:before {color: #a6a6a6;}
 
 
 .back-to-top {position: fixed; bottom: 30px; right: 0; opacity: 0; padding: 10px}

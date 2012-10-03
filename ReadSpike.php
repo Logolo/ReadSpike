@@ -4,11 +4,7 @@
 * given time interval.
 */
   
-<<<<<<< HEAD
-  // header("Cache-Control: max-age=1");
-=======
   header("Cache-Control: max-age=1");
->>>>>>> added rudimentary image previews
   require 'API_cache.php';
   
 ?>
@@ -80,38 +76,48 @@
           foreach($decodeReddit[data][children] as $story){
            
           //nsfw!  
-          if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}  
+          if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}    
+                      
           
+          // title
+          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." | ".$story[data][subreddit]."\" >".$story[data][title]."</a>\n"; 
+         
+                  
+
           // comments                
           echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
           
-          // thumbnail
-          if($story[data][thumbnail]){echo "<img src=".$story[data][thumbnail]." class='thumbnail' />";}   
           
-<<<<<<< HEAD
-          echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
-=======
->>>>>>> added rudimentary image previews
-          
-          // detect if image
+          // if image show show hide controls
           $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
           $url = $story[data][url];
           $urlExt = pathinfo($url, PATHINFO_EXTENSION);
           
           if (in_array($urlExt, $imgExts)) { 
             
-            echo "<a title='Hide image' class='hide-image'>&#x25B4;</a>";
+            echo "<a title='Hide image' class='hide-image'>&times;</a>";
             echo "<a title='Show image' href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
-                        
+
+              
+          }    
+          
+          // thumbnail
+          if($story[data][thumbnail]){echo "<img src=".$story[data][thumbnail]." class='thumbnail' />";}   
+          
+          
+          // detect if show image layer
+          $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
+          $url = $story[data][url];
+          $urlExt = pathinfo($url, PATHINFO_EXTENSION);
+          
+          if (in_array($urlExt, $imgExts)) { 
+            
             echo "<div class='full-image'></div>";
               
           }
           
-          // title
-          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." | ".$story[data][subreddit]."\" >".$story[data][title]."</a>\n"; 
-          echo "</li>\n";
-          
-          
+           echo "</li>\n";
+           
         }
       /* !WRITE OUT ALL JSON
       
