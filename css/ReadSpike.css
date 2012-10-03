@@ -40,6 +40,14 @@ a:active {background: #222; color: #fff;}
 .nsfw .story-title:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
 .nsfw .story-title:visited:before {color: #a6a6a6;}
 
+.tab-header.bbc-title ,
+.tab-header.bbc-title:visited,
+.tab-header.GNews-title,
+.tab-header.GNews-title:visited {color: #BEBEBE}
+.tab-header.bbc-title.active, .tab-header.GNews-title.active {color: #666} 
+.tab-header.bbc-title {float: left}
+
+.tab-content.GNews-news {display: none}
 
 .back-to-top {position: fixed; bottom: 30px; right: 0; opacity: 0; padding: 10px}
 

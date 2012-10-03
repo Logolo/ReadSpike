@@ -212,45 +212,6 @@
 
   
   
-<!-- !GOOGLE NEWS -->
-  
-  
-  
-  <h1><a href="http://news.google.com/" target="_blank">Google News</a></h1>
-   
-  <?php //!GOOGLE NEWS
-    
-        $cache_file = 'cache/api-cache-GNews.json';
-        $api_call = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=uk&hl=en&output=json';
-        $cache_for = 7; // cache results for five minutes
-        
-        $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
-        if (!$res = $api_cache->get_api_cache())
-          $res = "Error: Could not load cache - please reload\n";
-          
-      ob_start();
-      echo $res;
-      $json_body = ob_get_clean();
-  
-        $decodeGNews = json_decode($json_body, true);        
-
-      echo "<ol>\n";
-      
-      foreach($decodeGNews[responseData][feed][0] as $storyGNews){
-      
-      
-           echo "<li><a href=\"".$storyGNews[link]."\" target=\"_blank\" title=\"".$storyGNews[publishedDate]."\" >".$storyGNews[title]."</a></li>\n"; 
-          
-        }
-      
-        echo "</ol>\n\n";  
-      
-      echo "<pre>";
-      print_r($decodeGNews);
-      echo "</pre>";
-      
-?>
-
 
 
 
@@ -261,8 +222,10 @@
   <div class="col">
   
   
-    <h1><a href="http://www.bbc.co.uk/news" target="_blank">BBC News</a></h1> 
+    <h1><a href="http://www.bbc.co.uk/news" target="_blank" class="tab-header bbc-title" data-source="bbc-news">BBC News</a></h1> 
+    <h1><a href="http://news.google.com/" target="_blank" class="tab-header GNews-title" data-source="GNews-news">Google News</a></h1>
     
+	<section class="tab-content bbc-news">
     <?php //!BBC
     
     
@@ -293,6 +256,54 @@
       
         
     ?>
+	
+	</section>
+<!-- !GOOGLE NEWS -->
+  
+  
+  
+   
+	<section class="tab-content GNews-news">
+  <?php //!GOOGLE NEWS
+    
+        $cache_file = 'cache/api-cache-GNews.json';
+        $api_call = 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=38&q=http%3A%2F%2Fnews.google.com%2Fnews%3Foutput%3Drss';
+        $cache_for = 7; // cache results for five minutes
+        
+        $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
+        if (!$res = $api_cache->get_api_cache())
+          $res = "Error: Could not load cache - please reload\n";
+          
+      ob_start();
+      echo $res;
+      $json_body = ob_get_clean();
+  
+        $decodeGNews = json_decode($json_body, true);        
+
+      echo "<ol>\n";
+      
+      foreach($decodeGNews[responseData][feed][entries] as $storyGNews){
+      
+      
+           echo "<li><a href=\"".$storyGNews[link]."\" target=\"_blank\" title=\"".$storyGNews[contentSnippet]."\" >".$storyGNews[title]."</a></li>\n"; 
+          
+        }
+      
+        echo "</ol>\n\n";  
+      
+      /* !WRITE OUT ALL JSON
+      
+      echo "<pre>";
+      print_r($decodeGNews);
+      echo "</pre>";
+      */
+
+?>
+
+	</section>
+
+
+
 
   
   <h1><a href="http://www.pinboard.in/popular/" target="_blank">Pinboard</a></h1>
