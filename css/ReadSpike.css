@@ -69,7 +69,7 @@ body.light {background: #eee; color: #666;}
 .settings:hover {opacity: 1;}
 
 .settings .lightSwitch,
-.settings .darkSwitch {font-size: 0; color: transparent; margin-left: 5px; display: block; float: right; width: 16px; height: 16px; padding: 0; border-radius: 16px;}
+.settings .darkSwitch {font-size: 0; color: transparent; margin-left: 25px; display: block; float: right; width: 16px; height: 16px; padding: 0; border-radius: 16px;}
 
 .settings .lightSwitch  {background: #eee; border: 2px solid #333}
 .settings .lightSwitch:hover  {background: #fff; border: 2px solid #fff}

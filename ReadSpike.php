@@ -175,7 +175,7 @@
   ?>
   
   
-  
+<!-- !DIGG -->
   
   
   <h1><a href="http://digg.com/" target="_blank">New Digg</a></h1>
@@ -206,6 +206,48 @@
         }
       
         echo "</ol>\n\n";  
+      
+?>
+
+
+  
+  
+<!-- !GOOGLE NEWS -->
+  
+  
+  
+  <h1><a href="http://news.google.com/" target="_blank">Google News</a></h1>
+   
+  <?php //!GOOGLE NEWS
+    
+        $cache_file = 'cache/api-cache-GNews.json';
+        $api_call = 'https://news.google.com/news/feeds?pz=1&cf=all&ned=uk&hl=en&output=json';
+        $cache_for = 7; // cache results for five minutes
+        
+        $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
+        if (!$res = $api_cache->get_api_cache())
+          $res = "Error: Could not load cache - please reload\n";
+          
+      ob_start();
+      echo $res;
+      $json_body = ob_get_clean();
+  
+        $decodeGNews = json_decode($json_body, true);        
+
+      echo "<ol>\n";
+      
+      foreach($decodeGNews[responseData][feed][0] as $storyGNews){
+      
+      
+           echo "<li><a href=\"".$storyGNews[link]."\" target=\"_blank\" title=\"".$storyGNews[publishedDate]."\" >".$storyGNews[title]."</a></li>\n"; 
+          
+        }
+      
+        echo "</ol>\n\n";  
+      
+      echo "<pre>";
+      print_r($decodeGNews);
+      echo "</pre>";
       
 ?>
 
@@ -313,8 +355,8 @@
    <a href="#home" class="back-to-top">&#8679;</a>
  
     <div class="settings"> 
-     <a class="lightSwitch">light</a>
      <a class="darkSwitch">dark</a>
+     <a class="lightSwitch">light</a>
     </div>
     
     
