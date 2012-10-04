@@ -1,164 +1,254 @@
-body {margin: 0; padding: 0; font-family: 'Helvetica Neue', 'Segoe UI', Segoe, sans-serif; background: #333; color: #bbb; font-size: 15px; line-height: 140%; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; }
-* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+/* !reset */
+
+body {margin: 0; padding: 0; font-family: 'Helvetica Neue', 'Segoe UI', Segoe, sans-serif; font-size: 15px; line-height: 140%; -webkit-transition: all 0.3s ease; transition: all 0.3s ease;}
+
+* { -moz-box-sizing: border-box; border-box; box-sizing: border-box;}
+
+h1 {font-weight: 200; font-size: 24px;}
+
+a {text-decoration: none; -webkit-transition: all 0.1s ease; transition: all 0.1s ease;}
 
 ul,
-ol {margin: 0 0 3em 0; padding: 0; list-style: none;}
-
-li {border-bottom: 1px dotted #666; position: relative;}
-
-h1.logo-header {font-size: 0; color: transparent; position: absolute; top: 25px; left: 40px; background: url('../imgs/readspike-logo.svg') no-repeat left center; width: 181px; height: 42px; }
+ol {margin: 0; padding: 0; list-style: none;}
 
 
-h1, h1 a {display: inline-block; text-decoration: none; color: #bbb; font-weight: 200; font-size: 24px; }
-h1 a:visited {color: #bbb }
-h1 a:hover {color: #fff; background: none; text-shadow: 0 0 5px #000; }
+/* !header */
 
-a {text-decoration: none; display: block; color: #bbb; padding: 5px 25px 5px 5px; -webkit-transition: all 0.1s ease; transition: all 0.1s ease;}
-a:visited {color: #666 }
-a:hover {background: #292929; color: #fff;}
-a:active {background: #222; color: #fff;}
-
-
-.comments,
-.show-image,
-.hide-image {float: right; display: inline-block; padding: 5px 10px; cursor: pointer; position: absolute; top: 0; right: 0}
-
-.comments {padding-top: 9px; padding-bottom: 1px;}
-
-.show-image {right: 30px; font-size: 20px}
-
-.hide-image {display: none; right: 30px; font-size: 20px}
-
-.full-image {display: none; clear: both; text-align: center; z-index: 500; position: inherit}
-.full-image a {padding: 0; padding: 5px; }
-.full-image img {width: 100%; display: block;}
-
-/* ! thumbnail */
-
-.tooltip-holder  {position: absolute; right: 15px; width: 0; text-align: center; height: 0px; top: -100px; z-index: 10; opacity: 0;-webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; transition: all 0.3s ease; }
-.tooltip-holder {box-shadow: 0 5px 12px -7px rgba(0,0,0,0.9);}
-
-.show-image:hover ~ .tooltip-holder {opacity: 1; width: 70px; height: 80px; }
-
-.story-title {padding-right: 60px;}
-.story-title.open-story, .story-title.open-story:visited {font-weight: bold; color: #666}
-
-.nsfw .story-title:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
-
-/* !news tabs */
-
-.tab-header.bbc-title,
-.tab-header.bbc-title:visited,
-.tab-header.GNews-title,
-.tab-header.GNews-title:visited {color: #666; padding-right: 0}
-
-.tab-header.bbc-title.active, .tab-header.GNews-title.active {color: #bbb} 
-
-.tab-header.bbc-title {}
-
-.news-title-prefix:after {content: " News"}
-
-.tab-content.GNews-news {display: none}
-
-.back-to-top {position: fixed; bottom: 30px; right: 0; opacity: 0; padding: 10px}
-
-footer {padding: 2%}
-footer a {padding: 2%}
-
-/* .light */ 
-
-body.light {background: #eee; color: #666;}
-
-.light li {border-bottom: 1px dotted #ccc;}
-
-.light h1,.light h1 a {color: #666; }
-.light h1 a:visited { color: #666 }
-.light h1 a:hover { color: #333; text-shadow: none; background: transparent} 
-
-.light a {color: #666; }
-.light a:visited {color: #BEBEBE }
-.light a:hover {background: #ddd; color: #000;}
-.light a:active {background: #ccc; color: #222;}
-
-.light .header-search {background: #e7e7e7; padding: 1em 0; border-bottom: 1px solid #ddd}
-
-/* !light news tabs */
-
-.light .tab-header.bbc-title,
-.light .tab-header.bbc-title:visited,
-.light .tab-header.GNews-title,
-.light .tab-header.GNews-title:visited {color: #BEBEBE}
-
-.light .tab-header.bbc-title.active, .light .tab-header.GNews-title.active {color: #666} 
-
-
-.settings {position: absolute; top: 0; right: 0; padding: 34px 0 0 0; width: 150px; height: 87px; opacity: 0.5;}
-.settings:hover {opacity: 1;}
-
-.settings .lightSwitch,
-.settings .darkSwitch {font-size: 0; color: transparent; margin-left: 25px; display: block; float: right; width: 16px; height: 16px; padding: 0; border-radius: 16px;}
-
-.settings .lightSwitch  {background: #eee; border: 2px solid #333}
-.settings .lightSwitch:hover  {background: #fff; border: 2px solid #fff}
-.settings .darkSwitch     {background: #333; border: 2px solid #eee; margin-right: 40px}
-.settings .darkSwitch:hover  {background: #000}
+.main-header {padding: 1em 0; margin-bottom: 1em; position: relative}
+.main-header .logo-header {font-size: 0; color: transparent; position: absolute; top: 25px; left: 40px; background: url('../imgs/readspike-logo.svg') no-repeat left center; width: 181px; height: 42px; }
 
 
 /* !search */
 
-.header-search {background: #222; padding: 1em 0; border-bottom: 1px solid #111; margin-bottom: 1em;}
+.main-header form {text-align: center}
+.main-header input[type="text"] {width: 40%; margin: 0.5em auto; height: 40px; border: 1px solid; font-size: 16px;  padding: 0 40px 0 10px;}
+.main-header input {-webkit-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
 
-form {text-align: center }
 
-input[type="text"] {width: 40%; margin: 0.5em auto; height: 40px; border: 1px solid #C9C9C9; font-size: 16px; color: #606060; padding: 0 40px 0 10px; background: #ddd; }
-.light input[type="text"] {background: #fff} 
-input::-webkit-input-placeholder, input::input-placeholder {color: #bbb }
+/* !col group */
 
-input {-webkit-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
+.col-group {overflow: hidden; margin: 0 2em}
+.col-group > .col {float: right; width: 31.3%; margin: 0 1%; }
 
-input:focus {outline: none; -webkit-box-shadow: inset 0 0 5px #C9C9C9; box-shadow: inset 0 0 5px #C9C9C9; border: 1px solid #bbb; background: #fff}
-                
+.col section {padding-bottom: 3em}
+
+/* !link lists */
+
+.links-list li {position: relative;} 
+.links-list a  {display: block; padding: 5px; width: 100%;} 
+
+
+/* !comments-list w/ comments/thumbnails */
+
+.comments-list .comments,
+.thumbnails-list .show-image,
+.thumbnails-list .hide-image {position: absolute; right: 0; top: 0; text-align: center; width: 30px; height: 100%; max-height: 52px; cursor: pointer; } 
+
+.comments-list .comments {line-height: 190%}
+.comments-list .story-title {padding-right: 30px;}
+
+.thumbnails-list .show-image,
+.thumbnails-list .hide-image {right: 30px}
+.thumbnails-list .hide-image {display: none}
+.thumbnails-list .image-link .story-title {padding-right: 60px;}
+
+.thumbnails-list .full-image {position: inherit; z-index: 10}
+.thumbnails-list .full-image a {padding: 0; margin-bottom: -5px}
+.thumbnails-list .full-image img {width: 100%}
+
+.nsfw .story-title:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
+
+/* ! thumbnail */
+
+.tooltip-holder  {position: absolute; right: 15px; width: 0; text-align: center; height: 0px; top: -100px; z-index: 10; opacity: 0; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; }
+
+.tooltip-holder  {box-shadow: 0 5px 12px -7px rgba(0,0,0,0.9);}
+
+.show-image:hover ~ .tooltip-holder {opacity: 1; width: 70px; height: 80px; }
+
+
+/* !news tabs */
+
+.news-title-prefix:after {content: " News"}
+.tab-content.GNews-news {display: none}
+
+
+/* !footer */
+
+.back-to-top {position: fixed; bottom: 30px; right: 0; opacity: 0; padding: 10px}
+
+footer   {padding: 2%}
+footer a {padding: 2%}
+
+
+/* !settings */
+
+.settings                    {position: absolute; top: 0; right: 0; padding: 34px 0 0 0; width: 150px; height: 87px; opacity: 0.5;}
+.settings:hover              {opacity: 1;}
+
+.settings .lightSwitch,
+.settings .darkSwitch        {font-size: 0; color: transparent; margin-left: 25px; display: block; float: right; width: 20px; height: 20px; padding: 0; border-radius: 16px;}
+
+.settings .lightSwitch       {background: #eee; border: 2px solid #333}
+.settings .lightSwitch:hover {background: #fff; border: 2px solid #fff}
+.settings .darkSwitch        {background: #333; border: 2px solid #eee; margin-right: 40px}
+.settings .darkSwitch:hover  {background: #000}
+
+
+
+
+/* ----- !THEMES ----- */
+
+
+/* !dark theme colours */
+
+body         {background: #333; color: #bbb;}
+
+h1           {color: #bbb;}
+h1 a:visited {color: #bbb }
+h1 a:hover   {color: #fff; text-shadow: 0 0 5px #000; }
+
+a            {color: #bbb;}
+a:visited    {color: #666 }
+a:hover      {background: #292929; color: #fff;}
+a:active     {background: #222; color: #fff;}
+
+.main-header {background: #222; border-bottom: 1px solid #111;}
+
+.main-header input[type="text"]                 {color: #111; background: #333; }
+.main-header input::-webkit-input-placeholder, 
+.main-header input::input-placeholder           {color: #666;}
+.main-header input:focus                        {color: #fff; border-color: #000; background: #606060; outline: #000;
+                                                  -webkit-box-shadow: inset 0 0 5px #000; 
+                                                  box-shadow: inset 0 0 5px #000;}
+
+.links-list li      {border-bottom: 1px dotted #666;} 
+
+.tab-header,
+.tab-header:visited {color: #666;}
+.tab-header.active  {color: #bbb;} 
+
+.story-title.open-story, 
+.story-title.open-story:visited {color: #fff;}
+
+/* !light theme colours */
+
+body.light          {background: #eee; color: #666;}
+
+.light h1           {color: #666;}
+.light h1 a:visited {color: #666 }
+.light h1 a:hover   {color: #333; text-shadow: none; background: none;}
+
+.light a            {color: #666;}
+.light a:visited    {color: #bebebe }
+.light a:hover      {background: #ddd; color: #000;}
+.light a:active     {background: #ccc; color: #222;}
+
+.light .main-header {background: #e7e7e7; border-bottom: 1px solid #ddd;}
+
+
+.light .main-header input[type="text"]                 {color: #606060; background: #fff; border-color: #C9C9C9}
+.light .main-header input::-webkit-input-placeholder, 
+.light .main-header input::input-placeholder           {color: #bbb }
+.light .main-header input:focus                        {border-color: #bbb; background: #fff; 
+                                                  -webkit-box-shadow: inset 0 0 5px #C9C9C9; 
+                                                  box-shadow: inset 0 0 5px #C9C9C9;}
+
+.light .links-list li      {border-bottom: 1px dotted #ccc;} 
+
+.light .tab-header,
+.light .tab-header:visited {color: #bebebe;}
+.light .tab-header.active  {color: #666;} 
+
+
+.light .story-title.open-story, 
+.light .story-title.open-story:visited {color: #000;}
+
+
+
 
 /* !responsive biznizzz */
 
-/* normal ----------- */
 
-.col-group {overflow: hidden; margin: 0 2em}
+@media only screen and (min-width: 320px) {
 
-.col-group > .col {float: right; width: 31.3%; margin: 0 1%;}
+  /* Small screen, non-retina */
+  
+  body:after {content: "1 Small screen, non-retina"; font-size: 30px; color: #990000}
 
-/* iPhone 4 ----------- */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5), 
-only screen and (max-width : 800px) {
-
-  /* Styles */
-  
-  li a {padding: 10px 0 25px 5px; }
-  
-  .col-group {overflow: hidden; margin: 0;}
-  
-  .col-group > .col {float: none; width: auto;}
-  
-  .tooltip-holder,
-  .show-image:hover ~ .tooltip-holder,
-  .header-search {display: none}
-  
-  input[type="text"] {width: 80%}
-  
-  .comments {float: right; display: inline-block; width: 2em; height: 2em; line-height: 2em; text-align: center}
 
 }
 
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px),
+only screen and (                min-resolution: 192dpi) and (min-width: 320px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 320px) { 
 
-/* iPads (portrait and landscape) & small windows ----------- */
-
-@media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) {
-
-  /* Styles */
+  /* Small screen, retina, stuff to override above media query */
   
-  li a {padding: 10px 25px 10px 5px; }
+  body:after {content: "2 Small screen, retina, stuff to override above media query"; font-size: 30px; color: #990000}
+  
+  
+  /* !layout */  
+  .main-header {display: none;}  
+  .col-group {overflow: hidden; margin: 0}
+  .col-group > .col {float: none; width: 100%; margin: 0 1%; } 
+  .links-list a  {padding: 5px;} 
+  
+
+}
+
+@media only screen and (min-width: 700px) {
+
+  /* Medium screen, non-retina */
+  
+  body:after {content: "3 Medium screen, non-retina"; font-size: 30px; color: #990000}
+  
+  .links-list a  {padding: 15px; padding-left: 5px;} 
+  .comments-list .comments,
+  .thumbnails-list .show-image,
+  .thumbnails-list .hide-image {width: 60px; height: 100%; max-height: 52px; cursor: pointer; } 
+
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 700px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 700px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 700px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 700px),
+only screen and (                min-resolution: 192dpi) and (min-width: 700px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 700px) { 
+
+  /* Medium screen, retina, stuff to override above media query */
+  
+  body:after {content: "4 Medium screen, retina, stuff to override above media query "; font-size: 30px; color: #990000}
+
+}
+
+@media only screen and (min-width: 1300px) {
+
+  /* Large screen, non-retina */
+  body:after {content: "5 Large screen, non-retina"; font-size: 30px; color: #990000}
+  
+  .links-list a  {padding: 5px;} 
+  
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 1300px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (                min-resolution: 192dpi) and (min-width: 1300px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 1300px) { 
+
+  /* Large screen, retina, stuff to override above media query 
+  body:after {content: "6 Large screen, retina, stuff to override above media query"; font-size: 30px; color: #990000} */
+    
+  body {font-size: 18px}
+  .links-list a  {padding: 10px 5px;} 
+
 }

@@ -1,8 +1,4 @@
 <?php
-/*
-* Caches API calls to a local file which is updated on a
-* given time interval.
-*/
 
   header("Cache-Control: max-age=1");
   require 'API_cache.php';
@@ -40,14 +36,14 @@
 
  </head>
 
- <body id="home" class="light">
+ <body id="home">
 
 
 <!-- !HEADER -->
 
- <header class="header-search">
+ <header class="main-header">
 
-  <h1 class="logo-header">ReadSpike beta</h1>
+  <h1 class="logo-header">ReadSpike simple news aggregator beta v1</h1>
 
   <form action="https://www.google.com/search" method="get" target="_blank" class="google-search-form">
 
@@ -88,12 +84,32 @@
           $decodeReddit = json_decode($res, true);
   
   
-        echo "<ol>\n";
+        echo "<ol class='links-list comments-list thumbnails-list'>\n";
   
             foreach($decodeReddit[data][children] as $story){
-  
-            //nsfw!
-            if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}
+            
+            
+            // is it an image link
+            $hasImage = "";             
+            $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
+            $url = $story[data][url];
+            $urlExt = pathinfo($url, PATHINFO_EXTENSION);
+            
+            if (in_array($urlExt, $imgExts)) {                  
+                 $hasImage = 1;
+            }        
+            
+              
+            // write li with no/nsfw/has thumbnail class
+            if($story[data][over_18]){
+              echo "<li class='nsfw'>";
+            } else {
+              if($hasImage){
+                echo "<li class='image-link'>";                
+              } else {
+                echo "<li>";  
+              }         
+            }
   
   
             // title
@@ -104,10 +120,6 @@
             echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
   
   
-            // if image show show hide controls
-            $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
-            $url = $story[data][url];
-            $urlExt = pathinfo($url, PATHINFO_EXTENSION);
   
             if (in_array($urlExt, $imgExts)) {
   
@@ -117,19 +129,17 @@
             }
   
             // thumbnail
-            if($story[data][thumbnail]){echo "<div class='tooltip-holder' style='background: url(".$story[data][thumbnail].") no-repeat center bottom;' class='thumbnail' /></div>";}
+            if($hasImage && $story[data][thumbnail]){echo "<div style='background: url(".$story[data][thumbnail].") no-repeat center bottom;' class='thumbnail tooltip-holder'></div>";}
   
   
             // detect if show image layer
-            $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
-            $url = $story[data][url];
-            $urlExt = pathinfo($url, PATHINFO_EXTENSION);
-  
-            if (in_array($urlExt, $imgExts)) {
-  
+            
+            
+            if ($hasImage) {                  
+                 
               echo "<div class='full-image'></div>";
-  
             }
+             
   
              echo "</li>\n";
   
@@ -139,6 +149,7 @@
           echo "<pre>";
           print_r($decodeReddit);
           echo "</pre>";
+          
         */
   
           echo "</ol>\n\n";
@@ -170,15 +181,14 @@
 
         $decodeHN = json_decode($res, true);
 
-      echo "<ol>\n";
+        echo "<ol class='links-list comments-list'>\n";
 
       foreach($decodeHN[groups][Post]as $storyHN){
 
 
         echo "<li>";
-        /*echo $storyHN[postedAgo]." | ".$storyHN[commentCount]." | "."<a href=\"http://news.ycombinator.com/item?id=".$storyHN[id]."\" target=\"_blank\" class=\"comments\">&#149;</a>";*/
         echo "<a href=\"".$storyHN[NumComments][0][href]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
-        echo "<a href=\"".$storyHN[Title][0][href]."\" target=\"_blank\">".$storyHN[Title][0][value]."</a>";
+        echo "<a href=\"".$storyHN[Title][0][href]."\" target=\"_blank\" class=\"story-title\">".$storyHN[Title][0][value]."</a>";
         echo "</li>\n";
       }
 
@@ -219,7 +229,7 @@
 
         $decodeDigg = json_decode($json_body, true);
 
-      echo "<ol>\n";
+        echo "<ol class='links-list'>\n";
 
       foreach($decodeDigg[value][items] as $storyDigg){
 
@@ -276,7 +286,7 @@
 
         $decodeBBC = json_decode($json_body, true);
 
-      echo "<ol>\n";
+        echo "<ol class='links-list'>\n";
 
       foreach($decodeBBC[value][items] as $storyBBC){
 
@@ -314,7 +324,7 @@
 
         $decodeGNews = json_decode($json_body, true);
 
-      echo "<ol>\n";
+        echo "<ol class='links-list'>\n";
 
       foreach($decodeGNews[responseData][feed][entries] as $storyGNews){
 
@@ -361,7 +371,7 @@
 
         $decodePinboard = json_decode($json_body, true);
 
-      echo "<ol>\n";
+        echo "<ol class='links-list'>\n";
 
       foreach($decodePinboard as $storyPB){
 
@@ -422,15 +432,6 @@
   (function() {
     var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
     uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/41GKPc60EN3P7KhrnyTmTg.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
-</script
-
--->
-
- </body>
-</html>
-41GKPc60EN3P7KhrnyTmTg.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
 </script
