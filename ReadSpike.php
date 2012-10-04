@@ -413,7 +413,7 @@
 </footer>
 
 
-   <a href="#home" class="back-to-top">&#8679;</a>
+   <a href="#home" class="back-to-top">&#x25B2;</a>
 
     <div class="settings">
      <a class="darkSwitch">dark</a>

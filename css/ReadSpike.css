@@ -25,12 +25,6 @@ ol {margin: 0; padding: 0; list-style: none;}
 .main-header input {-webkit-transition: all 0.25s ease-in-out; transition: all 0.25s ease-in-out; }
 
 
-/* !col group */
-
-.col-group {overflow: hidden; margin: 0 2em}
-.col-group > .col {float: right; width: 31.3%; margin: 0 1%; }
-
-.col section {padding-bottom: 3em}
 
 /* !link lists */
 
@@ -105,8 +99,8 @@ footer a {padding: 2%}
 body         {background: #333; color: #bbb;}
 
 h1           {color: #bbb;}
-h1 a:visited {color: #bbb }
-h1 a:hover   {color: #fff; text-shadow: 0 0 5px #000; }
+h1 a:visited {color: #bbb;}
+h1 a:hover   {color: #fff; text-shadow: 0 0 5px #000; background: none;}
 
 a            {color: #bbb;}
 a:visited    {color: #666 }
@@ -170,85 +164,112 @@ body.light          {background: #eee; color: #666;}
 /* !responsive biznizzz */
 
 
-@media only screen and (min-width: 320px) {
-
-  /* Small screen, non-retina */
-  
-  body:after {content: "1 Small screen, non-retina"; font-size: 30px; color: #990000}
-
-
-}
-
 @media
-only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px),
-only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px),
-only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px),
-only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px),
-only screen and (                min-resolution: 192dpi) and (min-width: 320px),
-only screen and (                min-resolution: 2dppx)  and (min-width: 320px) { 
+only screen and (min-width: 320px), /* Small screen, non-retina */ 
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 320px) and (max-device-width : 1024px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 320px) and (max-device-width : 1024px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 320px) and (max-device-width : 1024px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 320px) and (max-device-width : 1024px),
+only screen and (                min-resolution: 192dpi) and (min-width: 320px) and (max-device-width : 1024px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 320px) and (max-device-width : 1024px) { 
 
-  /* Small screen, retina, stuff to override above media query */
+  /* Small screen, retina, stuff to override above media query 
+  body:before {content: "Small screen, retina and non-retina";}*/
   
-  body:after {content: "2 Small screen, retina, stuff to override above media query"; font-size: 30px; color: #990000}
+  /* !layout */ 
   
+  .main-header {padding: 0; margin-bottom: 0em; height: 60px;}
   
-  /* !layout */  
-  .main-header {display: none;}  
+  .main-header .logo-header {top: 10px; left: 10px; }
+  .settings                 {top: 0; right: 0; padding: 20px 0 0 0; width: 150px; height: 60px; opacity: 0.5;}
+  .settings .lightSwitch, 
+  .settings .darkSwitch     {margin: 0; margin-right: 20px;}
+
+  .main-header form {display: none}
   .col-group {overflow: hidden; margin: 0}
-  .col-group > .col {float: none; width: 100%; margin: 0 1%; } 
-  .links-list a  {padding: 5px;} 
-  
+  .col-group > .col {float: none; width: 100%; margin: 0%; }  
+  .col section {padding-bottom: 3em}
+    
+  h1 {padding: 5px 0 5px 15px;}     
+  .links-list a  {padding: 15px;}
+  .comments-list .comments {width: 40px; right: 10px}
+  .thumbnails-list .show-image,
+  .thumbnails-list .hide-image {right: 50px; width: 40px}
+  .thumbnails-list .hide-image {display: none}
+  .comments-list .story-title   {padding-right: 50px;}
+  .thumbnails-list .image-link .story-title {padding-right: 100px;}
+  .back-to-top {background: rgba(0,0,0,0.2); position: fixed; bottom: 0; right: 0; opacity: 0; padding: 10px}
+  .light .back-to-top {background: rgba(255,255,255,0.2)}
 
 }
 
 @media only screen and (min-width: 700px) {
 
-  /* Medium screen, non-retina */
+  /* Medium screen, non-retina */ 
   
-  body:after {content: "3 Medium screen, non-retina"; font-size: 30px; color: #990000}
+
+  /* !header */
   
-  .links-list a  {padding: 15px; padding-left: 5px;} 
-  .comments-list .comments,
-  .thumbnails-list .show-image,
-  .thumbnails-list .hide-image {width: 60px; height: 100%; max-height: 52px; cursor: pointer; } 
-
-}
-
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 700px),
-only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 700px),
-only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 700px),
-only screen and (        min-device-pixel-ratio: 2)      and (min-width: 700px),
-only screen and (                min-resolution: 192dpi) and (min-width: 700px),
-only screen and (                min-resolution: 2dppx)  and (min-width: 700px) { 
-
-  /* Medium screen, retina, stuff to override above media query */
+  .main-header {padding: 1em 0; margin-bottom: 1em; position: relative; height: auto}
+  .main-header .logo-header {position: absolute; top: 25px; left: 40px;}
   
-  body:after {content: "4 Medium screen, retina, stuff to override above media query "; font-size: 30px; color: #990000}
-
-}
-
-@media only screen and (min-width: 1300px) {
-
-  /* Large screen, non-retina */
-  body:after {content: "5 Large screen, non-retina"; font-size: 30px; color: #990000}
+  h1 {padding: 5px 0 5px 5px;}     
   
+  .main-header form {display: block}
   .links-list a  {padding: 5px;} 
   
+  .comments-list .comments {width: 30px; right: 0}
+  .thumbnails-list .show-image,
+  .thumbnails-list .hide-image {right: 30px; width: 30px}
+
+  .col-group        {overflow: hidden; margin: 0 2em}
+  .col-group > .col {float: right; width: 31.3%; margin: 0 1%; }  
+  .col section      {padding-bottom: 3em}
 }
 
-@media
-only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 1300px),
-only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 1300px),
-only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 1300px),
-only screen and (        min-device-pixel-ratio: 2)      and (min-width: 1300px),
-only screen and (                min-resolution: 192dpi) and (min-width: 1300px),
-only screen and (                min-resolution: 2dppx)  and (min-width: 1300px) { 
 
-  /* Large screen, retina, stuff to override above media query 
-  body:after {content: "6 Large screen, retina, stuff to override above media query"; font-size: 30px; color: #990000} */
-    
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+  /* Medium screen, iPad portrait */ 
   body {font-size: 18px}
-  .links-list a  {padding: 10px 5px;} 
+  h1 {padding: 5px 0 5px 15px;}    
+  
+  .main-header {padding: 0; margin-bottom: 0em; height: 60px}
+  
+  .main-header .logo-header {top: 10px; left: 10px; }
+  .settings                 {top: 0; right: 0; padding: 20px 0 0 0; width: 150px; height: 60px; opacity: 0.5;}
+  .settings .lightSwitch, 
+  .settings .darkSwitch     {margin: 0; margin-right: 20px;}
 
+  .main-header form {display: none}
+  
+  .links-list a  {padding: 15px;} 
+  
+  .comments-list .comments {width: 50px; right: 10px}
+  .thumbnails-list .show-image,
+  .thumbnails-list .hide-image {right: 50px; width: 50px}
+
+ /* !layout */
+  
+  .col-group {overflow: hidden; margin: 0 0.5em}
+  .col-group > .col {float: none; width: 100%; margin: 0 0; }  
+  .col section {padding-bottom: 3em}
 }
+
+
+
+
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+  /* Medium screen, iPad landscape */
+  body {font-size: 18px}
+  
+  .links-list a  {padding: 15px;} 
+  
+  .comments-list .comments {width: 50px; right: 0}
+  .thumbnails-list .show-image,
+  .thumbnails-list .hide-image {right: 50px; width: 50px}
+}
+
