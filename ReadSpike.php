@@ -155,8 +155,11 @@
           echo "</ol>\n\n";
       ?>
             
+      <h2 class="show-more"><a href="#">Show more</a></h2>
+    
     </section>
-
+      
+    
   </div>
 
 
@@ -203,7 +206,9 @@
       */
 
   ?>
-
+    
+    <h2 class="show-more"><a href="#">Show more</a></h2>
+    
   </section>
 
 <!-- !DIGG -->
@@ -394,6 +399,8 @@
 ?>
 
 
+    <h2 class="show-more"><a href="#">Show more</a></h2>
+    
   </section>
 
   </div>

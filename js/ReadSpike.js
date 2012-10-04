@@ -96,7 +96,7 @@ $(function () {
         
         return false;
     });
-
+    
 
     // Check localstorage for light or dark
     	
@@ -109,6 +109,24 @@ $(function () {
       $("body").removeClass("light");
       
     };
+    
+    
+    
+    // show more
+    $(".show-more").click(function () {
+
+        $(this).prev(".links-list").children("li:nth-child(n+10)").fadeToggle();      
+          
+        return false;
+        
+    }).toggle( //toggle text
+      function(){
+        $(this).text("Show less");
+      },
+      function(){
+        $(this).text("Show more");
+      });;
+            
     
     
     // reload page after 10 mins

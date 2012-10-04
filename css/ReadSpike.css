@@ -5,6 +5,7 @@ body {margin: 0; padding: 0; font-family: 'Helvetica Neue', 'Segoe UI', Segoe, s
 * { -moz-box-sizing: border-box; border-box; box-sizing: border-box;}
 
 h1 {font-weight: 200; font-size: 24px;}
+h2 {font-size: 16px}
 
 a {text-decoration: none; -webkit-transition: all 0.1s ease; transition: all 0.1s ease;}
 
@@ -52,11 +53,13 @@ ol {margin: 0; padding: 0; list-style: none;}
 
 .nsfw .story-title:before {content: "NSFW"; color: #990000; font-size: 10px; font-weight: bold; padding-right: 5px;}
 
+.show-more {padding: 15px 5px; text-align: right; display: none;}
+
 /* ! thumbnail */
 
 .tooltip-holder  {position: absolute; right: 15px; width: 0; text-align: center; height: 0px; top: -100px; z-index: 10; opacity: 0; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; }
 
-.tooltip-holder  {box-shadow: 0 5px 12px -7px rgba(0,0,0,0.9);}
+.tooltip-holder  {box-shadow: 0 5px 7px -7px rgba(0,0,0,0.9);}
 
 .show-image:hover ~ .tooltip-holder {opacity: 1; width: 70px; height: 80px; }
 
@@ -98,9 +101,9 @@ footer a {padding: 2%}
 
 body         {background: #333; color: #bbb;}
 
-h1           {color: #bbb;}
-h1 a:visited {color: #bbb;}
-h1 a:hover   {color: #fff; text-shadow: 0 0 5px #000; background: none;}
+h1, h2           {color: #bbb;}
+h1 a:visited, h2 a:visited {color: #bbb;}
+h1 a:hover, h2 a:hover   {color: #fff; text-shadow: 0 0 5px #000; background: none;}
 
 a            {color: #bbb;}
 a:visited    {color: #666 }
@@ -129,9 +132,9 @@ a:active     {background: #222; color: #fff;}
 
 body.light          {background: #eee; color: #666;}
 
-.light h1           {color: #666;}
-.light h1 a:visited {color: #666 }
-.light h1 a:hover   {color: #333; text-shadow: none; background: none;}
+.light h1, .light h2           {color: #666;}
+.light h1 a:visited, .light h2 a:visited {color: #666 }
+.light h1 a:hover, .light h2 a:hover   {color: #333; text-shadow: none; background: none;}
 
 .light a            {color: #666;}
 .light a:visited    {color: #bebebe }
@@ -198,6 +201,8 @@ only screen and (                min-resolution: 2dppx)  and (min-width: 320px) 
   .thumbnails-list .hide-image {display: none}
   .comments-list .story-title   {padding-right: 50px;}
   .thumbnails-list .image-link .story-title {padding-right: 100px;}
+  .links-list li:nth-child(n+10) {display: none}
+  .show-more {display: block;}
   .back-to-top {background: rgba(0,0,0,0.2); position: fixed; bottom: 0; right: 0; opacity: 0; padding: 10px}
   .light .back-to-top {background: rgba(255,255,255,0.2)}
 
@@ -221,6 +226,8 @@ only screen and (                min-resolution: 2dppx)  and (min-width: 320px) 
   .comments-list .comments {width: 30px; right: 0}
   .thumbnails-list .show-image,
   .thumbnails-list .hide-image {right: 30px; width: 30px}
+  .links-list li:nth-child(n+10) {display: block}
+  .show-more {display: none;}
 
   .col-group        {overflow: hidden; margin: 0 2em}
   .col-group > .col {float: right; width: 31.3%; margin: 0 1%; }  
@@ -249,6 +256,7 @@ only screen and (                min-resolution: 2dppx)  and (min-width: 320px) 
   .comments-list .comments {width: 50px; right: 10px}
   .thumbnails-list .show-image,
   .thumbnails-list .hide-image {right: 50px; width: 50px}
+  .show-more {display: none;}
 
  /* !layout */
   
