@@ -16,7 +16,7 @@
 
   <meta charset="UTF-8">
 
-  <title>ReadSpike Simple news aggregator</title>
+  <title>ReadSpike simple news aggregator</title>
 
   <link rel="stylesheet" href="css/ReadSpike.css" type="text/css">
 
@@ -49,9 +49,9 @@
 
   <h1 class="logo-header">ReadSpike beta</h1>
 
-  <form action="https://www.google.com/search" method="get" target="_blank">
+  <form action="https://www.google.com/search" method="get" target="_blank" class="google-search-form">
 
-    <input type="text" placeholder="Search google..." name="q" />
+    <input type="text" placeholder="Search google..." name="q" class="google-search-input" />
 
   </form>
 
@@ -67,78 +67,84 @@
 
 <!-- !RIGHT COL -->
 
-  <div class="col">
-
-    <h1><a href="http://www.reddit.com" target="_blank">Reddit</a></h1>
-
-    <?php //!REDDIT
-
-        $cache_file = 'cache/api-cache-Reddit.json';
-        $api_call = 'http://www.reddit.com/.json?limit=100';
-        $cache_for = 3; // cache results for five minutes
-
-        $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
-        if (!$res = $api_cache->get_api_cache())
-          $res = "Error: Could not load cache - please reload\n";
-
-        $decodeReddit = json_decode($res, true);
+  <div class="col right-col">
 
 
-      echo "<ol>\n";
-
-          foreach($decodeReddit[data][children] as $story){
-
-          //nsfw!
-          if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}
-
-
-          // title
-          echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." ".$story[data][subreddit]." ".$story[data][selftext]."\" >".$story[data][title]."</a>\n";
-
-
-          // comments
-          echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
-
-
-          // if image show show hide controls
-          $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
-          $url = $story[data][url];
-          $urlExt = pathinfo($url, PATHINFO_EXTENSION);
-
-          if (in_array($urlExt, $imgExts)) {
-
-            echo "<a class='hide-image'>&times;</a>";
-            echo "<a href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
-
+    <section class="reddit-section">
+    
+      
+      <h1><a href="http://www.reddit.com" target="_blank">Reddit</a></h1>
+  
+      <?php //!REDDIT
+  
+          $cache_file = 'cache/api-cache-Reddit.json';
+          $api_call = 'http://www.reddit.com/.json?limit=100';
+          $cache_for = 3; // cache results for five minutes
+  
+          $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
+          if (!$res = $api_cache->get_api_cache())
+            $res = "Error: Could not load cache - please reload\n";
+  
+          $decodeReddit = json_decode($res, true);
+  
+  
+        echo "<ol>\n";
+  
+            foreach($decodeReddit[data][children] as $story){
+  
+            //nsfw!
+            if($story[data][over_18]){echo "<li class='nsfw'>";}else{echo "<li>";}
+  
+  
+            // title
+            echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." ".$story[data][subreddit]." ".$story[data][selftext]."\" >".$story[data][title]."</a>\n";
+  
+  
+            // comments
+            echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
+  
+  
+            // if image show show hide controls
+            $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
+            $url = $story[data][url];
+            $urlExt = pathinfo($url, PATHINFO_EXTENSION);
+  
+            if (in_array($urlExt, $imgExts)) {
+  
+              echo "<a class='hide-image'>&times;</a>";
+              echo "<a href=\"".$story[data][url]."\" class='show-image'>&#x25BE;</a>";
+  
+            }
+  
+            // thumbnail
+            if($story[data][thumbnail]){echo "<div class='tooltip-holder' style='background: url(".$story[data][thumbnail].") no-repeat center bottom;' class='thumbnail' /></div>";}
+  
+  
+            // detect if show image layer
+            $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
+            $url = $story[data][url];
+            $urlExt = pathinfo($url, PATHINFO_EXTENSION);
+  
+            if (in_array($urlExt, $imgExts)) {
+  
+              echo "<div class='full-image'></div>";
+  
+            }
+  
+             echo "</li>\n";
+  
           }
-
-          // thumbnail
-          if($story[data][thumbnail]){echo "<div class='tooltip-holder' style='background: url(".$story[data][thumbnail].") no-repeat center bottom;' class='thumbnail' /></div>";}
-
-
-          // detect if show image layer
-          $imgExts = array("gif", "jpg", "jpeg", "png", "tiff", "tif", "svg");
-          $url = $story[data][url];
-          $urlExt = pathinfo($url, PATHINFO_EXTENSION);
-
-          if (in_array($urlExt, $imgExts)) {
-
-            echo "<div class='full-image'></div>";
-
-          }
-
-           echo "</li>\n";
-
-        }
-      /* !WRITE OUT ALL JSON
-
-        echo "<pre>";
-        print_r($decodeReddit);
-        echo "</pre>";
-      */
-
-        echo "</ol>\n\n";
-    ?>
+        /* !WRITE OUT ALL JSON
+  
+          echo "<pre>";
+          print_r($decodeReddit);
+          echo "</pre>";
+        */
+  
+          echo "</ol>\n\n";
+      ?>
+            
+    </section>
 
   </div>
 
@@ -146,7 +152,9 @@
 
 <!-- !MIDDLE COL -->
 
-  <div class="col">
+  <div class="col middle-col">
+  
+  <section class="HN-section">
 
     <h1><a href="http://news.ycombinator.com" target="_blank">Hacker News</a></h1>
 
@@ -186,8 +194,11 @@
 
   ?>
 
+  </section>
 
 <!-- !DIGG -->
+
+  <section class="digg-section">
 
 
   <h1><a href="http://digg.com/" target="_blank">New Digg</a></h1>
@@ -221,6 +232,8 @@
 
 ?>
 
+  </section>
+
 
   </div>
 
@@ -229,12 +242,14 @@
 <!-- !LEFT COL -->
 
 
-  <div class="col">
+  <div class="col left-col">
 
 
 
 <!-- !NEWS HEADER -->
-
+  
+  <section class="news-section">
+  
     <h1>
     <a href="http://www.bbc.co.uk/news" target="_blank" class="tab-header bbc-title" data-source="bbc-news">BBC</a>
     <a href="http://news.google.com/" target="_blank" class="tab-header GNews-title" data-source="GNews-news">Google</a>
@@ -243,7 +258,7 @@
 
 <!-- !BBC NEWS -->
 
-  <section class="tab-content bbc-news">
+  <article class="tab-content bbc-news">
     <?php //!BBC
 
 
@@ -275,14 +290,14 @@
 
     ?>
 
-  </section>
+  </article>
 
 
 
 <!-- !GOOGLE NEWS -->
 
 
-  <section class="tab-content GNews-news">
+  <article class="tab-content GNews-news">
   <?php //!GOOGLE NEWS
 
         $cache_file = 'cache/api-cache-GNews.json';
@@ -319,10 +334,16 @@
 
 ?>
 
+  </article>
+
   </section>
-
-
-  <h1><a href="http://www.pinboard.in/popular/" target="_blank">Pinboard</a></h1>
+  
+  
+  
+  
+  <section class="pinboard-section">
+  
+   <h1><a href="http://www.pinboard.in/popular/" target="_blank">Pinboard</a></h1>
 
   <?php //!PINBOARD
 
@@ -363,6 +384,8 @@
 ?>
 
 
+  </section>
+
   </div>
 
 
@@ -373,7 +396,7 @@
 
 <!-- !FOOTER -->
 
-<footer>
+<footer class="page-footer">
 
    <a href="http://blackspike.com/" target="_blank">by blackspike.com</a>
 
@@ -407,30 +430,7 @@
 
  </body>
 </html>
-);
-  })();
-</script
-
--->
-
- </body>
-</html>
-rk</a>
-     <a class="lightSwitch">light</a>
-    </div>
-    
-    
-  
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-  <script src="js/ReadSpike.js" type="text/javascript"></script>
-
-<!--
-
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/41GKPc60EN3P7KhrnyTmTg.js';
+41GKPc60EN3P7KhrnyTmTg.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
   })();
 </script

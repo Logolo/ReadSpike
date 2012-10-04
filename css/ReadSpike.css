@@ -25,9 +25,9 @@ a:active {background: #222; color: #fff;}
 
 .comments {padding-top: 9px; padding-bottom: 1px;}
 
-.show-image {right: 30px;}
+.show-image {right: 30px; font-size: 20px}
 
-.hide-image {display: none; right: 30px;}
+.hide-image {display: none; right: 30px; font-size: 20px}
 
 .full-image {display: none; clear: both; text-align: center; z-index: 500; position: inherit}
 .full-image a {padding: 0; padding: 5px; }
