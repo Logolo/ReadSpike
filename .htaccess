@@ -1,6 +1,9 @@
 #ReadSpike
 DirectoryIndex ReadSpike.php
 
+# cache killer!!
+# Header add Cache-Control "max-age=1"
+
 
 #boilerplate
 

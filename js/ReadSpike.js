@@ -11,6 +11,64 @@ $(function () {
 	    },
 	});
 	
+	// submit ajax form
+  
+    $(".feedback-form").submit(function(event) {
+
+    /* stop form from submitting normally */
+    event.preventDefault(); 
+        
+    /* get some values from elements on the page: */
+    var $form = $( this ),
+        name = $form.find( 'input[name="name"]' ).val(),
+        email = $form.find( 'input[name="email"]' ).val(),
+        message = $form.find( 'input[name="message"]' ).val(),
+        url = $form.attr( 'action' );
+
+    /* Send the data using post and put the results in a div */
+    $.post( url, { name: name, email: email, message: message },
+      function( $form  ) {
+          var content = $( name ).find( '.contact-form' );	      
+          $( ".result" ).fadeIn();
+          $( ".result" ).empty().append( "Thanks " + name  );
+          $(".contact-form").fadeOut();
+      }
+    );
+  });  
+  
+  
+    // show/hide contact form
+  
+    $(".show-contact-form").click(function(){        
+        $(".contact-form").fadeIn('fast');
+        return false;
+    }); 
+    
+    $(".close-contact-form").click(function(){        
+        $(".contact-form").fadeOut('fast');
+        return false;
+    });    
+    	
+    	// close with esc
+    	
+    	$(document).keyup(function(e) {
+        if (e.keyCode == 27) { $(".contact-form").fadeOut('fast');}   // esc
+      });
+          	
+          	
+
+  // detect iPad
+
+	var isiPad = navigator.userAgent.match(/iPad/i) != null;
+
+  // open links in same window on mobile, blank on desktop/ipad
+  
+  if($(window).width() < 480 || isiPad){
+     $(".links-list a[href^='http://']").attr("target","_self");
+	 }else{
+  	 $(".links-list a[href^='http://']").attr("target","_blank");
+	 }
+	
 	// show reddit image
 	/*
   	
@@ -100,7 +158,7 @@ $(function () {
 
     // Check localstorage for light or dark
     	
-    if (localStorage.getItem("ThemeColour") == "Light" || !localStorage.getItem("ThemeColour")) {
+    if (localStorage.getItem("ThemeColour") == "Light") {
     
       $("body").addClass("light");
     
@@ -158,7 +216,7 @@ $(function () {
   
   // show/hide back to top on scroll
   
-  jQuery(window).scroll(function(){
+  $(window).scroll(function(){
    
       if(jQuery(window).scrollTop() > 200){
         // show back to top

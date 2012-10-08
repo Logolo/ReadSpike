@@ -45,7 +45,7 @@
 
   <h1 class="logo-header">ReadSpike simple news aggregator beta v1</h1>
 
-  <form action="https://www.google.com/search" method="get" target="_blank" class="google-search-form">
+  <form action="https://www.google.com/search" method="get" class="google-search-form">
 
     <input type="text" placeholder="Search google..." name="q" class="google-search-input" />
 
@@ -69,7 +69,7 @@
     <section class="reddit-section">
     
       
-      <h1><a href="http://www.reddit.com" target="_blank">Reddit</a></h1>
+      <h1><a href="http://www.reddit.com">Reddit</a></h1>
   
       <?php //!REDDIT
   
@@ -113,11 +113,11 @@
   
   
             // title
-            echo "<a href=\"".$story[data][url]."\" target=\"_blank\" class=\"story-title\" title=\"".$story[data][num_comments]." ".$story[data][subreddit]." ".$story[data][selftext]."\" >".$story[data][title]."</a>\n";
+            echo "<a href=\"".$story[data][url]."\"  class=\"story-title\" title=\"".$story[data][num_comments]." ".$story[data][subreddit]." ".$story[data][selftext]."\" >".$story[data][title]."</a>\n";
   
   
             // comments
-            echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
+            echo "<a href=\"http://www.reddit.com/".$story[data][permalink]."\"  class=\"comments\" title=\"comments\">&#10078;</a>";
   
   
   
@@ -170,7 +170,7 @@
   
   <section class="HN-section">
 
-    <h1><a href="http://news.ycombinator.com" target="_blank">Hacker News</a></h1>
+    <h1><a href="http://news.ycombinator.com">Hacker News</a></h1>
 
     <?php //!HACKER NEWS
 
@@ -190,8 +190,8 @@
 
 
         echo "<li>";
-        echo "<a href=\"".$storyHN[NumComments][0][href]."\" target=\"_blank\" class=\"comments\" title=\"comments\">&#10078;</a>";
-        echo "<a href=\"".$storyHN[Title][0][href]."\" target=\"_blank\" class=\"story-title\">".$storyHN[Title][0][value]."</a>";
+        echo "<a href=\"".$storyHN[NumComments][0][href]."\"  class=\"comments\" title=\"comments\">&#10078;</a>";
+        echo "<a href=\"".$storyHN[Title][0][href]."\"  class=\"story-title\">".$storyHN[Title][0][value]."</a>";
         echo "</li>\n";
       }
 
@@ -216,7 +216,7 @@
   <section class="digg-section">
 
 
-  <h1><a href="http://digg.com/" target="_blank">New Digg</a></h1>
+  <h1><a href="http://digg.com/">New Digg</a></h1>
 
   <?php //!NEW DIGG
 
@@ -239,7 +239,7 @@
       foreach($decodeDigg[value][items] as $storyDigg){
 
 
-           echo "<li><a href=\"".$storyDigg[link]."\" target=\"_blank\" title=\"".$storyDigg[description]."\" >".$storyDigg[title]."</a></li>\n";
+           echo "<li><a href=\"".$storyDigg[link]."\"  title=\"".$storyDigg[description]."\" >".$storyDigg[title]."</a></li>\n";
 
         }
 
@@ -266,8 +266,8 @@
   <section class="news-section">
   
     <h1>
-    <a href="http://www.bbc.co.uk/news" target="_blank" class="tab-header bbc-title" data-source="bbc-news">BBC</a>
-    <a href="http://news.google.com/" target="_blank" class="tab-header GNews-title" data-source="GNews-news">Google</a>
+    <a href="http://www.bbc.co.uk/news" class="tab-header bbc-title" data-source="bbc-news">BBC</a>
+    <a href="http://news.google.com/" class="tab-header GNews-title" data-source="GNews-news">Google</a>
     </h1>
 
 
@@ -296,7 +296,7 @@
       foreach($decodeBBC[value][items] as $storyBBC){
 
 
-           echo "<li><a href=\"".$storyBBC[link]."\" target=\"_blank\" title=\"".$storyBBC[description]."\" >".$storyBBC[title]."</a></li>\n";
+           echo "<li><a href=\"".$storyBBC[link]."\"  title=\"".$storyBBC[description]."\" >".$storyBBC[title]."</a></li>\n";
 
         }
 
@@ -334,7 +334,7 @@
       foreach($decodeGNews[responseData][feed][entries] as $storyGNews){
 
 
-           echo "<li><a href=\"".$storyGNews[link]."\" target=\"_blank\" title=\"".$storyGNews[contentSnippet]."\" >".$storyGNews[title]."</a></li>\n";
+           echo "<li><a href=\"".$storyGNews[link]."\"  title=\"".$storyGNews[contentSnippet]."\" >".$storyGNews[title]."</a></li>\n";
 
         }
 
@@ -358,7 +358,7 @@
   
   <section class="pinboard-section">
   
-   <h1><a href="http://www.pinboard.in/popular/" target="_blank">Pinboard</a></h1>
+   <h1><a href="http://www.pinboard.in/popular/">Pinboard</a></h1>
 
   <?php //!PINBOARD
 
@@ -380,7 +380,7 @@
 
       foreach($decodePinboard as $storyPB){
 
-         echo "<li><a href=\"".$storyPB[u]."\" target=\"_blank\">".$storyPB[d]."</a></li>\n";
+         echo "<li><a href=\"".$storyPB[u]."\" >".$storyPB[d]."</a></li>\n";
 
       }
 
@@ -415,13 +415,29 @@
 
 <footer class="page-footer">
 
-   <a href="http://blackspike.com/" target="_blank">by blackspike.com</a>
-
+   <a href="http://blackspike.com/">by blackspike.com</a>  
+  
 </footer>
 
+      <div name="contact" class="contact-form">
+        <form method="post" class="feedback-form" action="contactengine.php">
+          <a class='close-contact-form'>&times;</a>
+          <h1>Feedback</h1>
+          <input type="text" name="name" id="name" placeholder="Your name" />
+          <input type="email" name="email" id="email" placeholder="Your email" required />
+          <input type="text" placeholder="Your message" name="message" id="message" size="14" required />
+          <input type="submit" name="submit" value="Send" class="submit-form" />      
+          <p><a href="http://www.twitter.com/readspike">Or get in touch on twitter at <strong>@ReadSpike</strong></a></p>
+          
+        <div class="result"></div>
+        
+        </form>
+      </div>
 
+      
    <a href="#home" class="back-to-top">&#x25B2;</a>
-
+   <a class="show-contact-form">Send feedback</a>
+   
     <div class="settings">
      <a class="darkSwitch">dark</a>
      <a class="lightSwitch">light</a>
@@ -432,18 +448,6 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
   <script src="js/ReadSpike.js" type="text/javascript"></script>
 
-<!--
-
-<script type="text/javascript">
-  var uvOptions = {};
-  (function() {
-    var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
-    uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/41GKPc60EN3P7KhrnyTmTg.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
-  })();
-</script
-
--->
 
  </body>
 </html>
