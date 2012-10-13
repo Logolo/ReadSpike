@@ -39,12 +39,12 @@ $(function () {
   
     // show/hide contact form
   
-    $(".show-contact-form").click(function(){        
+    $(".show-contact-form").on("click", function(){        
         $(".contact-form").fadeIn('fast');
         return false;
     }); 
     
-    $(".close-contact-form").click(function(){        
+    $(".close-contact-form").on("click", function(){        
         $(".contact-form").fadeOut('fast');
         return false;
     });    
@@ -54,7 +54,7 @@ $(function () {
     	$(document).keyup(function(e) {
         if (e.keyCode == 27) { $(".contact-form").fadeOut('fast');}   // esc
       });
-          	
+         
           	
 
   // detect iPad
@@ -68,55 +68,50 @@ $(function () {
 	 }else{
   	 $(".links-list a[href^='http://']").attr("target","_blank");
 	 }
-	
-	// show reddit image
-	/*
-  	
-	$(".show-image").click(function () {
-    var url = $(this).attr('href'),
-    image = new Image();
-    image.src = url;
-    image.onload = function () {
-        $(".full-image").empty().append(image).hide().slideDown();
-    };
-    image.onerror = function () {
-        $('.full-image').empty().html('That image is not available.');
-    }
 
-    $('.full-image').empty().html('Loading...');
-
-    return false;
-});
-	
-
-	
-	*/
+	 
+	 // image preview
   
-    $(".show-image").click(function(){
+    $(".show-image").on("click", function(){
         var imgUrl = $(this).attr('href');
-        $(this).siblings(".full-image").hide().html("<a href='" + imgUrl + "' title='View full size' target='_blank'><img src='" + imgUrl + "' alt='' /></a>").fadeIn();
+        var imgTrigger = $(this);
+        $(imgTrigger).siblings(".full-image").hide().html("<a href='" + imgUrl + "' title='View full size' target='_blank'><img src='" + imgUrl + "' alt='' /></a>").fadeIn();
         
-        $(this).hide();
-        $(this).siblings(".hide-image").show();
-        $(this).siblings(".story-title").addClass("open-story");
+        $(imgTrigger).hide();
+        $(imgTrigger).siblings(".hide-image").show();
+        $(imgTrigger).siblings(".story-title").addClass("open-story");
         return false;
     });
   
   
-    $(".hide-image").click(function(){
-        
-        $(this).hide();
-        $(this).siblings(".show-image").show().siblings(".full-image").slideUp('fast');
-        $(this).siblings(".story-title").removeClass("open-story");
+    $(".hide-image").on("click", function(){
+        var hideTrigger = $(this); 
+        $(hideTrigger).hide();
+        $(hideTrigger).siblings(".show-image").show().siblings(".full-image").slideUp('fast');
+        $(hideTrigger).siblings(".story-title").removeClass("open-story");
         return false;
     });    	
+    	
+    	
+    	// load thumbnail on hover 
+    	
+    	$(".show-image").on("hover", function(){      	
+      	
+      	var thumbDiv = $(this).next(".thumbnail");      	
+      	var thumbURL =  $(thumbDiv).attr("data-thumbnail");      	
+      	//console.log (thumbURL);       	
+      	$(thumbDiv).css({backgroundImage : 'url('+thumbURL+')'});
+      	 
+    	});
+    	
+    	
     	
 	  
 	 // bbc/google news tabs
 	  
 		$('.tab-header.bbc-title').addClass('active').addClass("news-title-prefix");
 		
-		$('.tab-header').click(function(){
+  		$('.tab-header').on("click", function(){
 		
   		var tabID = $(this).attr('data-source'); // Get the value of clicked a's href attribute
   		
@@ -130,14 +125,22 @@ $(function () {
   		
   		$(this).addClass('active').addClass("news-title-prefix");; // Add 'active' class to clicked nav item
   		
-  		return false; // Kill the link, don't do default action which is 'jump' to destined ID
+  		return false; 
   		
-		})
+		});
+		
+		
+		$(".tab-header").on("dblclick", function(){        
+        
+        //alert("test")
+        window.location = $(this).attr("href");
+    }); 
+          	
 	 
 	// set light
 	
 	
-    $(".lightSwitch").click(function () {
+    $(".lightSwitch").on("click", function(){
 
           $("body").addClass("light");
           
@@ -146,7 +149,7 @@ $(function () {
         return false;
     });
 
-    $(".darkSwitch").click(function () {
+    $(".darkSwitch").on("click", function(){
 
           $("body").removeClass("light");
           
@@ -171,7 +174,7 @@ $(function () {
     
     
     // show more
-    $(".show-more").click(function () {
+    $(".show-more").on("click", function(){
 
         $(this).prev(".links-list").children("li:nth-child(n+10)").fadeToggle();      
           
@@ -206,7 +209,7 @@ $(function () {
       }, 1000, 'easeInOutCubic');
   }
   
-  $('.back-to-top').click(function(){
+  $('.back-to-top').on("click", function(){
       var el = $(this).attr('href');
       var elWrapped = $(el);
        

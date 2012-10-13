@@ -1,6 +1,11 @@
 <?php
 
-  header("Cache-Control: max-age=1");
+  //force php zipping? http://www.webcodingtech.com/php/gzip-compression.php
+   
+  ob_start("ob_gzhandler"); 
+  
+  // header("Cache-Control: max-age=1");
+  
   require 'API_cache.php';
 
 ?>
@@ -44,6 +49,8 @@
  <header class="main-header">
 
   <h1 class="logo-header">ReadSpike simple news aggregator beta v1</h1>
+  
+  <p class="site-description">ReadSpike is a simple collection of the latest and most interesting news from around the web. Always up to date news.</p>
 
   <form action="https://www.google.com/search" method="get" class="google-search-form">
 
@@ -129,7 +136,7 @@
             }
   
             // thumbnail
-            if($hasImage && $story[data][thumbnail]){echo "<div style='background: url(".$story[data][thumbnail].") no-repeat center bottom;' class='thumbnail tooltip-holder'></div>";}
+            if($hasImage && $story[data][thumbnail] && !$story[data][over_18]){echo "<div data-thumbnail=".$story[data][thumbnail]." class='thumbnail tooltip-holder'></div>";}
   
   
             // detect if show image layer
@@ -278,7 +285,8 @@
 
 
         $cache_file = 'cache/api-cache-BBC.json';
-        $api_call = 'http://pipes.yahoo.com/pipes/pipe.run?_id=14c960a6df0000f567e08fc1c74fee15&_render=json&feedcount=10&feedurl=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Frss.xml';
+        // $api_call = 'http://pipes.yahoo.com/pipes/pipe.run?_id=14c960a6df0000f567e08fc1c74fee15&_render=json&feedcount=10&feedurl=http%3A%2F%2Ffeeds.bbci.co.uk%2Fnews%2Frss.xml';
+        $api_call = 'http://pipes.yahoo.com/pipes/pipe.run?_id=3a1c3c93ccf60261a30af91f6be6ecf8&_render=json&feedcount=100&feedurl=http%3A%2F%2Fnewsrss.bbc.co.uk%2Frss%2Fnewsonline_world_edition%2Ffront_page%2Frss.xml';
         $cache_for = 7; // cache results for five minutes
 
         $api_cache = new API_cache ($api_call, $cache_for, $cache_file);
