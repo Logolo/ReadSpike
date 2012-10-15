@@ -38,12 +38,11 @@ echo "<center>Record Deleted!</center><br>";
 ?>
 <html>
 <head>
-<style type="text/css">
-  
-  .light {background: #ddd;}
-  .dark {background: #666;}
-  
-</style>
+  <link href="../css/ReadSpike.css" rel="stylesheet" />
+  <style type="text/css">
+      body * {padding: 0.5em;}
+      hr {border: 0; border-bottom: black; background: #000; height: 1px; padding: 0}
+  </style>
 </head>
 
 
@@ -65,8 +64,6 @@ $result=mysql_query($query);
     
       echo $row['theme'];
 	}
-
-
 
 /*
   

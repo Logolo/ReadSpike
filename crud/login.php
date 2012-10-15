@@ -23,6 +23,7 @@ if(isset($_POST["insert"])){
       if(mysql_query($query))
         setcookie("username", $email, time()+33600);
         setcookie("theme", $theme, time()+33600);
+        echo "<h1>welcome ".$email."</h1>";
         echo "<center>Record Inserted!</center><br>";
     }
 
@@ -33,11 +34,12 @@ if(isset($_POST["insert"])){
 <html>
  <head>
   <meta charset="UTF-8">
-  <title>title</title>
+  <title>CRUD - login.php</title>
 
   <link href="../css/ReadSpike.css" rel="stylesheet" />
   <style type="text/css">
-
+      body * {padding: 0.5em;}
+      hr {border: 0; border-bottom: black; background: #000; height: 1px; padding: 0}
   </style>
  </head>
 
@@ -74,77 +76,54 @@ else{
   
   }
   
+
 }
 ?>
 
-
-<!--
-/*
-<?php
-
-$x=1;
-
-switch($x) {
-
-case localstorage:
-	set body from localstorage;
-	echo "<body class='from-localstorage'>";
-	break;
-
-case cookies:
-	set body from cookies;
-	echo "<body class='from-cookies'>";
-	break;
-
-case login:
-	set body from db, set cookies;
-	echo "<body class='from-mysql'>";
-	break;
-
-case:
-	create account, write to db, set cookies;
-	echo "<body class='local-mysql'>";
-	break;
-
-default:
-	echo "<body class='no-class'>";
-}
-
-?>
-*/
--->
 
 <!--  add records -->
 
 <form method="post" action="login.php">
 <table align="center" border="0">
 <tr>
-<td>email:</td>
-<td><input type="text" name="email" /></td>
+<td><label for="email">username</label></td>
+<td><input type="text" name="email" id="email" /></td>
 </tr>
 <tr>
-<td>theme:</td>
-<td><input type="text" name="theme" /></td>
+<td>
+<label for="light">light</label>
+</td>
+<td>
+<input type="radio" name="theme" value="light" id="light" checked="true" />
+</td>
+</tr>
+<tr>
+<td>
+<label for="dark">dark</label>
+</td>
+<td>
+<input type="radio" name="theme" value="dark" id="dark" />
+</td>
 </tr>
 <tr>
 <td>&nbsp;</td>
 <td align="right">
 <input type="hidden" name="insert" value="yes" />
-<input type="submit" value="Insert Record"/>
+<input type="submit" value="create account"/>
 </td>
 </tr>
 </table>
 </form>
 
-
+<hr />
 
 <!--  search records -->
 
 <form method="post" action="login.php">
 <table align="center" border="0">
 <tr>
-<td>login:</td>
-<td><input type="text" name="find_user_theme" /></td>
+<td><label for="find_user_theme">login</label></td>
+<td><input type="text" id="find_user_theme" name="find_user_theme" /></td>
 </tr>
 <tr>
 <td>&nbsp;</td>
