@@ -23,7 +23,7 @@
 
   <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
   <meta name="author" content="http://blackspike.com">
-  <meta name="description" content="Simple techy-news aggregator">
+  <meta name="description" content="ReadSpike is a simple collection of the latest and most interesting news from around the web. Always up to date news.">
 
   <script type="text/javascript">
 

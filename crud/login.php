@@ -2,6 +2,25 @@
 include 'connect_db.php';
 include 'open_db.php';
 
+// body class
+
+$bodyClass = "";
+$pageTitle = "Welcome! log in or create an account";
+
+// set/read cookie monster
+
+function cookieSetMonster ($cookieSetName, $cookieSetValue, $cookieSetTime) {
+  if(!$cookieSetTime){$cookieSetTime = time()+33600;}
+  setcookie($cookieSetName, $cookieSetValue, $cookieSetTime);
+}
+
+// is the theme set in cookies? if yes, add cookie theme as class to body
+if (isset($_COOKIE["theme"])){
+  $bodyClass = $_COOKIE["theme"] . " from-cookies";
+  $pageTitle = $_COOKIE["username"] . " (from cookie)";
+}
+
+
 // add new user
 
 if(isset($_POST["insert"])){
@@ -16,19 +35,64 @@ if(isset($_POST["insert"])){
       //username already exists
       echo "username already exists";
 
+      // clear cookies
+      cookieSetMonster("username",'',1);
+      cookieSetMonster("theme",'',1);
+
+
     } else {
-      //no problem
+      // create user, set cookies
 
       $query="insert into user(email, theme) values('$email', '$theme')";
       if(mysql_query($query))
-        setcookie("username", $email, time()+33600);
-        setcookie("theme", $theme, time()+33600);
-        echo "<h1>welcome ".$email."</h1>";
-        echo "<center>Record Inserted!</center><br>";
+
+      cookieSetMonster("username",$email);
+      cookieSetMonster("theme",$theme);
+
+      $bodyClass = $theme. " from new user";
+      $pageTitle = "welcome ".$email. " - Record Inserted!";
     }
 
   }
 }
+
+
+// if user logging in, retrieve the theme from the just set mysql data
+if($_POST["login"]=="yes"){
+
+  // get theme pref
+  $find_user_theme_value = $_POST["find_user_theme"];
+  $find_user_theme_result = mysql_query("SELECT * FROM user WHERE email='".$find_user_theme_value."'");
+
+  // add class from mysql to body
+  if($row = mysql_fetch_array($find_user_theme_result))
+  {
+    if($row['theme'] == "dark" || $row['theme'] == "light"){
+      $bodyClass = $row['theme']." (from mysql)";
+      $pageTitle = "welcome ".$row['email']." (from mysql)";
+
+      // clear cookies
+      cookieSetMonster("username",'',1);
+      cookieSetMonster("theme",'',1);
+
+      // set cookies
+      cookieSetMonster("username",$row['email']);
+      cookieSetMonster("theme",$row['theme']);
+
+    }
+  }else{
+    $bodyClass = "searched-not-found";
+    $pageTitle = "user not found";
+
+    // clear cookies
+    cookieSetMonster("username",'',1);
+    cookieSetMonster("theme",'',1);
+
+  }
+
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,40 +108,11 @@ if(isset($_POST["insert"])){
  </head>
 
 <?php
-if (isset($_COOKIE["theme"])){
-  echo "<body class='" . $_COOKIE["theme"] . "'>";
-  }
-else{
-    
-  if(isset($_POST["login"])){
-  
-    if($_POST["login"]=="yes"){
-  
-      $find_user_theme_value = $_POST["find_user_theme"];
-  
-      $find_user_theme_result = mysql_query("SELECT * FROM user WHERE email='".$find_user_theme_value."'");
-  
-      if($row = mysql_fetch_array($find_user_theme_result))
-      { 
-        if($row['theme'] == "dark" || $row['theme'] == "light"){
-          echo "<body class='".$row['theme']."'>";
-          
-          setcookie("username", $row['email'], time()+33600);
-          setcookie("theme", $row['theme'], time()+33600);
-        
-        }
-      }else{echo "<body class='searched-not-found'>";}
-  
-    }
-  
-  }else{
-  
-    echo "<body class='not-searched'>";
-  
-  }
-  
+if ($bodyClass){
+  echo "<body class='".$bodyClass."'>\n";
+}else {echo "<body>\n";}
+echo "<h1>".$pageTitle."</h1>";
 
-}
 ?>
 
 
