@@ -2,6 +2,9 @@
 include 'connect_db.php';
 include 'open_db.php';
 
+$email;
+$theme;
+
 // body class
 
 $bodyClass = "";
@@ -39,8 +42,8 @@ if(isset($_POST["insert"])){
       cookieSetMonster("username",'',1);
       cookieSetMonster("theme",'',1);
 
-
     } else {
+    
       // create user, set cookies
 
       $query="insert into user(email, theme) values('$email', '$theme')";
@@ -55,6 +58,21 @@ if(isset($_POST["insert"])){
 
   }
 }
+
+
+// edit user
+
+if(isset($_POST["update"])){
+	if($_POST["update"]=="yes"){
+	$email=$_POST["email"];
+	$theme=$_POST["theme"];
+
+$query="update user set email='$email' , theme='$theme' where id=".$_POST['id'];
+if(mysql_query($query))
+echo "<center>Record Updated</center><br>";
+	}
+}
+
 
 
 // if user logging in, retrieve the theme from the just set mysql data
@@ -107,6 +125,8 @@ if($_POST["login"]=="yes"){
   </style>
  </head>
 
+<!-- body & welcome -->
+
 <?php
 if ($bodyClass){
   echo "<body class='".$bodyClass."'>\n";
@@ -115,6 +135,22 @@ echo "<h1>".$pageTitle."</h1>";
 
 ?>
 
+<!-- edit/delete links -->
+
+<?php
+
+$query="select * from user";
+$result=mysql_query($query);
+if(mysql_num_rows($result)>0){
+	echo "<a href='login.php?operation=edit&id=".$row['id']."&email=".$row['email']."&theme=".$row['theme']."'>edit</a>";
+	echo "<a href='login.php?operation=delete&id=".$row['id']."'>delete</a>";	
+	
+}
+else{
+echo "<center>No Records Found!</center>";	
+}
+
+?>
 
 <!--  add records -->
 
@@ -172,8 +208,68 @@ echo "<h1>".$pageTitle."</h1>";
 
 
 
+<hr />
+
+<!--  update records -->
 
 
+
+<?php
+
+if(isset($_GET['operation'])){
+if($_GET['operation']=="edit"){
+?>
+<form method="post" action="login.php">
+<table align="center" border="0">
+<tr>
+<td>email:</td>
+<td><input type="text" name="email" value="<?php echo $_GET['email']; ?>" /></td>
+</tr>
+<tr>
+<td>theme:</td>
+<td><input type="text" name="theme" value="<?php echo $_GET['theme']; ?>"/></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td align="right">
+<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+<input type="hidden" name="update" value="yes" />
+<input type="submit" value="update Record"/>
+</td>
+</tr>
+</table>
+</form>
+<?php
+}}
+?>
+
+
+<?php
+$query="select * from user";
+$result=mysql_query($query);
+if(mysql_num_rows($result)>0){
+	echo "<table align='center' border='1'>";
+	echo "<tr>";
+	echo "<th>Id</th>";
+	echo "<th>email</th>";
+	echo "<th>theme</th>";
+	echo "</tr>";
+	while($row=mysql_fetch_array($result)){
+	echo "<tr>";
+	echo "<td>".$row['id']."</td>";	
+	echo "<td>".$row['email']."</td>";	
+	echo "<td>".$row['theme']."</td>";
+	echo "<td><a href='login.php?operation=edit&id=".$row['id']."&email=".$row['email']."&theme=".$row['theme']."'>edit</a></td>";
+	echo "<td><a href='login.php?operation=delete&id=".$row['id']."'>delete</a></td>";	
+	echo "</tr>";
+	}
+	echo "</table>";
+}
+else{
+echo "<center>No Records Found!</center>";	
+}
+
+?>
 
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
