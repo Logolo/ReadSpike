@@ -3,5 +3,5 @@
 $dbhost = 'localhost';
 $dbuser = 'root';
 $dbpass = 'root';
-$dbname = 'readspike_test';
+$dbname = 'readspike_test2';
 ?>
