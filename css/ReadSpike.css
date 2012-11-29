@@ -224,6 +224,7 @@ only screen and (                min-resolution: 2dppx)  and (min-width: 320px) 
   .main-header form {display: none;}
   .col-group {overflow: hidden; margin: 0;}
   .col-group > .col {float: none; width: 100%; margin: 0%; }  
+  .col  {overflow-y: hidden;}
   .col section {padding-bottom: 3em;}
     
   h1 {padding: 5px 0 5px 15px;}     
