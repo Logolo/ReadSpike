@@ -37,6 +37,16 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
   <meta name="author" content="http://blackspike.com">
   <meta name="description" content="ReadSpike is a simple collection of the latest and most interesting news from around the web. Always up to date news.">
+  
+	<!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+	<link rel="apple-touch-icon" href="imgs/blackspike-icon-57.png">
+	<!-- For first- and second-generation iPad: -->
+	<link rel="apple-touch-icon" sizes="72x72" href="imgs/blackspike-icon-72.png">
+	<!-- For iPhone with high-resolution Retina display: -->
+	<link rel="apple-touch-icon" sizes="114x114" href="imgs/blackspike-icon-114.png">
+	<!-- For third-generation iPad with high-resolution Retina display: -->
+	<link rel="apple-touch-icon" sizes="144x144" href="imgs/blackspike-icon-144.png">
+
 
   <script type="text/javascript">
 
